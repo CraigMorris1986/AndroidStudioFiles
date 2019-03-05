@@ -13,15 +13,15 @@
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="Check guess"
         android:onClick="checkGuess" />
 
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/textBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="This is plain text" />
+        android:text="Enter an number between 1 and 10" />
 </LinearLayout>
