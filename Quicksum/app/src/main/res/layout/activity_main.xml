@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/sum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="100sp" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <Button
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="buttonClicked"
+                android:text="@string/_1"
+                android:textSize="42sp" />
+
+            <Button
+                style="@style/Widget.AppCompat.Button"
+                android:textSize="42sp"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/_2"
+                android:onClick="buttonClicked"/>
+
+            <Button
+                style="@style/Widget.AppCompat.Button"
+                android:textSize="42sp"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/_3"
+                android:onClick="buttonClicked"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+
+            <Button
+                style="@style/Widget.AppCompat.Button"
+                android:textSize="42sp"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/_4"
+                android:onClick="buttonClicked"/>
+
+            <Button
+                style="@style/Widget.AppCompat.Button"
+                android:textSize="42sp"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/_5"
+                android:onClick="buttonClicked"/>
+
+            <Button
+                style="@style/Widget.AppCompat.Button"
+                android:textSize="42sp"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/_6"
+                android:onClick="buttonClicked"/>
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <Button
+                style="@style/Widget.AppCompat.Button"
+                android:textSize="42sp"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/_7"
+                android:onClick="buttonClicked"/>
+
+            <Button
+                style="@style/Widget.AppCompat.Button"
+                android:textSize="42sp"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/_8"
+                android:onClick="buttonClicked"/>
+
+            <Button
+                style="@style/Widget.AppCompat.Button"
+                android:textSize="42sp"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/_9"
+                android:onClick="buttonClicked"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <Button
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/reset"
+                android:textSize="22sp"
+                android:layout_weight="1"
+                android:onClick="resetQuicksum"/>
+        </TableRow>
+
+
+    </TableLayout>
+
+</android.support.v7.widget.LinearLayoutCompat>

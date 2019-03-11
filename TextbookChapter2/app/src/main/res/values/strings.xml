@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">TextbookChapter2</string>
+    <string name="beer_adviser">Beer Adviser</string>
+    <string name="find_beer">Find Beer!</string>
+    <string name="beer_brands">No beers selected</string>
+    <string-array name="beer_colours">
+        <item>light</item>
+        <item>amber</item>
+        <item>brown</item>
+        <item>dark</item>
+    </string-array>
+</resources>
