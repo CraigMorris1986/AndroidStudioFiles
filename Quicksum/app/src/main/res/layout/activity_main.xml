@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -120,20 +119,15 @@
                 android:onClick="buttonClicked"/>
         </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
+        <!--took bottom button out of a table-row for resizing optimisation.-->
+        <Button
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" >
-
-            <Button
-                style="@style/Widget.AppCompat.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/reset"
-                android:textSize="22sp"
-                android:layout_weight="1"
-                android:onClick="resetQuicksum"/>
-        </TableRow>
+            android:text="@string/reset"
+            android:textSize="46sp"
+            android:layout_weight="1"
+            android:onClick="resetQuicksum"/>
 
 
     </TableLayout>
