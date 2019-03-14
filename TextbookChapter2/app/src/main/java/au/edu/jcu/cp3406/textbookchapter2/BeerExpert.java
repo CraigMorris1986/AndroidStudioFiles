@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BeerExpert {
+
     List<String> getBrands(String colour) {
         List<String> brands = new ArrayList<>();
         if (colour.equals("light")) {
