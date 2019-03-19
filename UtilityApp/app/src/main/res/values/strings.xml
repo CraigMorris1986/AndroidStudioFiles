@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Utility App</string>
+    <string name="welcomeText">Welcome to the Unit Converter</string>
+    <string name="temperature">Temperature</string>
+    <string name="weight">Weight</string>
+    <string name="distance">Distance</string>
+    <string name="settings">Settings</string>
+    <string-array name="temperatures">
+        <item>Celsius</item>
+        <item>Fahrenheit</item>
+        <item>Kelvin</item>
+    </string-array>
+    <string-array name="weights">
+        <item>Kilogram</item>
+        <item>Pound</item>
+        <item>Newton</item>
+    </string-array>
+    <string-array name="distances">
+        <item>Metre</item>
+        <item>Feet</item>
+        <item>Yard</item>
+        <item>Nautical Mile</item>
+    </string-array>
+
+</resources>
