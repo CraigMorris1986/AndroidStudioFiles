@@ -22,7 +22,7 @@ public class ChooseActivity extends AppCompatActivity {
         //above code sets the ChooseActivity text display to reflect the button pushed (eg temperature, weight, distance)
 
         arraySelection();
-
+        //TODO: create method to retrieve spinner selection to pass into custom Converter Class to handle conversions
 
     }
 

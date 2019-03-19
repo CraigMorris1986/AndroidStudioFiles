@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 public class HomeActivity extends AppCompatActivity {
     //TODO: create DisplayConvertedActivity to show the conversions from ChooseActivity
+    //TODO: create custom Converter Class to handle conversions - takes spinner focus string as argument
     public static String UNIT_TO_COVERT_TYPE;
 
     @Override
