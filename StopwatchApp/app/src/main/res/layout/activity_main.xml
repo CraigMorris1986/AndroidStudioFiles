@@ -39,5 +39,19 @@
         android:layout_marginTop="16sp"
         android:text="@string/stop"
         android:onClick="disableStopwatch"/>
+    <Button
+        android:id="@+id/settingsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16sp"
+        android:text="@string/settings"
+        android:onClick="goToSettingsActivity"/>
+
+    <TextView
+        android:id="@+id/testText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="test" />
 
 </LinearLayout>

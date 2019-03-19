@@ -4,4 +4,7 @@
     <string name="startTimerString">Start Timer</string>
     <string name="stop">Stop</string>
     <string name="reset">reset</string>
+    <string name="settings">settings</string>
+    <string name="accept">Accept</string>
+    <string name="enter_value">enter value</string>
 </resources>

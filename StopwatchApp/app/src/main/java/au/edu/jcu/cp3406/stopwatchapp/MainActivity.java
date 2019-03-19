@@ -1,5 +1,6 @@
 package au.edu.jcu.cp3406.stopwatchapp;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,8 +18,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TextView display = findViewById(R.id.display);
-        Button toggle = findViewById(R.id.startButton);
+        Intent intent = getIntent();
+        String received = intent.getStringExtra("speedString");
+        TextView test = findViewById(R.id.testText);
+        test.setText(received);
         if (savedInstanceState == null) {
             stopwatch = new Stopwatch();
         } else {
@@ -70,10 +73,14 @@ public class MainActivity extends AppCompatActivity {
                     stopwatch.tick();
                     button.setEnabled(false);
                     textView.setText(stopwatch.toString());
-
                 }
                 handler.postDelayed(this, 1000);
             }
         });
+    }
+
+    public void goToSettingsActivity(View view) {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
     }
 }
