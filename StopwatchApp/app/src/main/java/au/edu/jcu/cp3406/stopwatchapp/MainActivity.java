@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void enableStopwatch(View view) {
         isRunning = true;
+        runStopwatch();
 
     }
 
