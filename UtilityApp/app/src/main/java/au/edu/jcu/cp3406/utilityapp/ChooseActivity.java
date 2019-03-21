@@ -43,6 +43,17 @@ public class ChooseActivity extends AppCompatActivity {
             }
         });
 
+        if (savedInstanceState != null) {
+            editText.setText(savedInstanceState.getString("editTextValue"));
+        } //saved Instance state for the edit text value.
+
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outstate) {
+        super.onSaveInstanceState(outstate);
+        EditText editText = findViewById(R.id.userInput);
+        outstate.putString("editTextValue", editText.getText().toString());
 
     }
 
@@ -88,7 +99,6 @@ public class ChooseActivity extends AppCompatActivity {
 
         startActivity(intent);
     }
-
 
 }
 
