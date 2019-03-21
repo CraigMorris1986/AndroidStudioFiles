@@ -2,12 +2,6 @@ package au.edu.jcu.cp3406.utilityapp;
 
 public class Converter {
 
-    // 0.45359237 kilos per pound
-    // 1 kilo = 9.81 Newton
-
-    // C to Far = (°C x (9/5))+32=°F
-    // Far to C = ((°F-32)x(5/9))=°C
-    // C - 273.15 = K
 
     public String convertCelsius(String celsius) {
         double celsiusDouble = Double.parseDouble(celsius);
@@ -58,6 +52,33 @@ public class Converter {
         double pounds = kilos / 0.45359237;
 
         String conversion = String.format("%.2f Newtons =\n%.2f Kilograms\n%.2f Pounds", newtons, kilos, pounds);
+        return conversion;
+    }
+
+    public String convertMeter(String meter) {
+        double meters = Double.parseDouble(meter);
+        double feet = meters * 3.2808;
+        double yards = meters * 1.0936;
+
+        String conversion = String.format("%.2f Meters =\n%.2f Feet\n%.2f Yards", meters, feet, yards);
+        return conversion;
+    }
+
+    public String convertFeet(String feet) {
+        double feetDouble = Double.parseDouble(feet);
+        double meters = feetDouble / 3.2808;
+        double yards = feetDouble / 3;
+
+        String conversion = String.format("%.2f Feet =\n%.2f Meters\n%.2f Yards", feetDouble, meters, yards);
+        return conversion;
+    }
+
+    public String convertYards(String yard) {
+        double yards = Double.parseDouble(yard);
+        double meters = yards / 1.0936;
+        double feet = yards * 3;
+
+        String conversion = String.format("%.2f Yards =\n%.2f Meters\n%.2f Feet", yards, meters, feet);
         return conversion;
     }
 

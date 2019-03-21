@@ -3,7 +3,9 @@ package au.edu.jcu.cp3406.utilityapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,23 +13,35 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 public class ChooseActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose);
 
         Intent intent = getIntent();
+        final Button button = findViewById(R.id.convertButton);
         TextView textView = findViewById(R.id.chooseText);
+        EditText editText = findViewById(R.id.userInput);
         String formattedText = String.format("Please select the %s unit to convert", intent.getStringExtra("unit"));
         textView.setText(formattedText);
         //above code sets the ChooseActivity text display to reflect the button pushed (eg temperature, weight, distance)
 
         arraySelection();
 
-        //TODO: create method to retrieve spinner selection to pass into custom Converter Class to handle conversions
         //TODO: add savedInstanceState
 
+        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            /**
+             * actionListener currently works for physical keyboard enter but not softkey enter, it is a known issue.
+             */
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)){
+                    button.performClick();
+                }
+                return false;
+            }
+        });
 
 
     }

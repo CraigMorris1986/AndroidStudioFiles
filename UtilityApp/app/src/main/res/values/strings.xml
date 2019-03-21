@@ -19,10 +19,9 @@
         <item>Newton</item>
     </string-array>
     <string-array name="distances">
-        <item>Metre</item>
+        <item>Meter</item>
         <item>Feet</item>
         <item>Yard</item>
-        <item>Nautical Mile</item>
     </string-array>
 
 </resources>

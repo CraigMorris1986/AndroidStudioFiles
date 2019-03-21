@@ -47,6 +47,15 @@ public class DisplayConversionActivity extends AppCompatActivity {
         if (choice.equals("Newton")) {
             DISPLAY = converter.convertNewton(UNITS_TO_CONVERT);
         }
+        if (choice.equals("Meter")) {
+            DISPLAY = converter.convertMeter(UNITS_TO_CONVERT);
+        }
+        if (choice.equals("Feet")) {
+            DISPLAY = converter.convertFeet(UNITS_TO_CONVERT);
+        }
+        if (choice.equals("Yard")) {
+            DISPLAY = converter.convertYards(UNITS_TO_CONVERT);
+        }
         textView.setText(DISPLAY);
     }
 }
