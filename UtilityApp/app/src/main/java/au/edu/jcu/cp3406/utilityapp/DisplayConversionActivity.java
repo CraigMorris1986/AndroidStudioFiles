@@ -4,12 +4,15 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class DisplayConversionActivity extends AppCompatActivity {
     Converter converter = new Converter();
     String UNITS_TO_CONVERT;
     String DISPLAY;
+    int FONT_SIZE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,12 +21,15 @@ public class DisplayConversionActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String recievedInput = intent.getStringExtra("userString");
         String recievedChoice = intent.getStringExtra("userChoice");
+        FONT_SIZE = intent.getIntExtra("fontSize", 20);
+        setFontSize();
         UNITS_TO_CONVERT = recievedInput;
         convertFromChoice(recievedChoice);
     }
 
     public void onClickReturnHome(View view) {
         Intent intentHome = new Intent(this, HomeActivity.class);
+        intentHome.putExtra("fontSize", FONT_SIZE);
         startActivity(intentHome);
     }
 
@@ -57,5 +63,14 @@ public class DisplayConversionActivity extends AppCompatActivity {
             DISPLAY = converter.convertYards(UNITS_TO_CONVERT);
         }
         textView.setText(DISPLAY);
+    }
+
+    public void setFontSize() {
+        TextView textView = findViewById(R.id.convertedText);
+        Button convertButton = findViewById(R.id.returnHome);
+
+        textView.setTextSize((float) (FONT_SIZE * 1.5));
+        convertButton.setTextSize(FONT_SIZE);
+
     }
 }

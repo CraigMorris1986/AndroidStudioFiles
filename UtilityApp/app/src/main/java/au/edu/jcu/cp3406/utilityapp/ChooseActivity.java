@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 public class ChooseActivity extends AppCompatActivity {
+    int FONT_SIZE;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,10 +26,12 @@ public class ChooseActivity extends AppCompatActivity {
         String formattedText = String.format("Please select the %s unit to convert", intent.getStringExtra("unit"));
         textView.setText(formattedText);
         //above code sets the ChooseActivity text display to reflect the button pushed (eg temperature, weight, distance)
+        Intent homeIntent = getIntent();
+        FONT_SIZE = homeIntent.getIntExtra("fontSize", 20);
+        setFontSize();
 
         arraySelection();
 
-        //TODO: add savedInstanceState
 
         editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             /**
@@ -96,8 +99,20 @@ public class ChooseActivity extends AppCompatActivity {
 
         intent.putExtra("userString", userInputString);
         intent.putExtra("userChoice", userChoice);
+        intent.putExtra("fontSize", FONT_SIZE);
 
         startActivity(intent);
+    }
+
+    public void setFontSize() {
+        TextView textView = findViewById(R.id.chooseText);
+        Button convertButton = findViewById(R.id.convertButton);
+        EditText editText = findViewById(R.id.userInput);
+
+        textView.setTextSize((float) (FONT_SIZE * 1.5));
+        convertButton.setTextSize(FONT_SIZE);
+        editText.setTextSize(FONT_SIZE);
+
     }
 
 }

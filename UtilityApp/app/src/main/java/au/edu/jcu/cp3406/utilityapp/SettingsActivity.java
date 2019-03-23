@@ -8,7 +8,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 public class SettingsActivity extends AppCompatActivity {
-    public int FONT_SIZE;
+    int FONT_SIZE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

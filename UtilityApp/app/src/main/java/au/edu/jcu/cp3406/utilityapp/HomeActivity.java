@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 public class HomeActivity extends AppCompatActivity {
     public static String UNIT_TO_COVERT_TYPE;
-    public int FONT_SIZE = 20;
+    int FONT_SIZE = 20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +19,7 @@ public class HomeActivity extends AppCompatActivity {
         if (settingsIntent.getExtras() != null) {
            FONT_SIZE = settingsIntent.getIntExtra("fontSize", 20);
         }
-        setFontSize(FONT_SIZE);
+        setFontSize();
 
     }
 
@@ -29,6 +29,7 @@ public class HomeActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ChooseActivity.class);
         intent.putExtra("unit", UNIT_TO_COVERT_TYPE.toLowerCase());
         intent.putExtra("arrayName", "temperatures");
+        intent.putExtra("fontSize", FONT_SIZE);
         startActivity(intent);
     }
 
@@ -38,6 +39,7 @@ public class HomeActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ChooseActivity.class);
         intent.putExtra("unit", UNIT_TO_COVERT_TYPE.toLowerCase());
         intent.putExtra("arrayName", "weights");
+        intent.putExtra("fontSize", FONT_SIZE);
         startActivity(intent);
     }
 
@@ -47,6 +49,7 @@ public class HomeActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ChooseActivity.class);
         intent.putExtra("unit", UNIT_TO_COVERT_TYPE.toLowerCase());
         intent.putExtra("arrayName", "distances");
+        intent.putExtra("fontSize", FONT_SIZE);
         startActivity(intent);
     }
 
@@ -57,7 +60,7 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void setFontSize(int fontSize) {
+    public void setFontSize() {
         TextView textView = findViewById(R.id.welcomeText);
         Button temperatureButton = findViewById(R.id.temperatureButton);
         Button weightButton = findViewById(R.id.weightButton);
