@@ -19,10 +19,9 @@
         android:id="@+id/returnHome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/return_home"
         android:layout_marginTop="36sp"
         android:onClick="onClickReturnHome"
-        />
+        android:text="@string/return_home" />
 
 
 </LinearLayout>

@@ -9,11 +9,18 @@ import android.widget.TextView;
 
 public class HomeActivity extends AppCompatActivity {
     public static String UNIT_TO_COVERT_TYPE;
+    public int FONT_SIZE = 20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        Intent settingsIntent = getIntent();
+        if (settingsIntent.getExtras() != null) {
+           FONT_SIZE = settingsIntent.getIntExtra("fontSize", 20);
+        }
+        setFontSize(FONT_SIZE);
+
     }
 
     public void onClickTemperature(View view) {
@@ -43,7 +50,24 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void onClickSettings() {
+
+    public void onClickSettings(View view) {
         //TODO: create a settings screen, possibly for changing font sizes (make variable to be passed through to all activities to set font size
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
+
+    public void setFontSize(int fontSize) {
+        TextView textView = findViewById(R.id.welcomeText);
+        Button temperatureButton = findViewById(R.id.temperatureButton);
+        Button weightButton = findViewById(R.id.weightButton);
+        Button distanceButton = findViewById(R.id.distanceButton);
+        Button settingsButton = findViewById(R.id.settingsButton);
+
+        textView.setTextSize((float) (FONT_SIZE * 1.5));
+        temperatureButton.setTextSize(FONT_SIZE);
+        weightButton.setTextSize(FONT_SIZE);
+        distanceButton.setTextSize(FONT_SIZE);
+        settingsButton.setTextSize(FONT_SIZE);
     }
 }

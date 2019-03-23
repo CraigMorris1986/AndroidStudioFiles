@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16sp"
+    tools:context=".SettingsActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="40sp"
+        android:textAlignment="center"
+        android:text="@string/settings" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+
+        >
+
+        <RadioButton
+            android:id="@+id/smallButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/small_font" />
+
+        <RadioButton
+            android:id="@+id/mediumButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/medium_font"
+            android:checked="true"/>
+
+        <RadioButton
+            android:id="@+id/largeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/large_font" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/acceptSettingsButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="28sp"
+        android:padding="16sp"
+        android:text="@string/accept"
+        android:onClick="onClickAcceptSettingsButton"/>
+</LinearLayout>
