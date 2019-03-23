@@ -25,6 +25,7 @@
         android:layout_weight="1"
         android:text="@string/temperature"
         android:onClick="onClickTemperature"
+        android:background="@color/colorBlue"
         />
 
     <Button
@@ -35,6 +36,7 @@
         android:layout_weight="1"
         android:text="@string/weight"
         android:onClick="onClickWeight"
+        android:background="@color/colorYellow"
         />
 
     <Button
@@ -45,6 +47,7 @@
         android:layout_weight="1"
         android:text="@string/distance"
         android:onClick="onClickDistance"
+        android:background="@color/colorGreen"
         />
 
     <Button
@@ -55,6 +58,7 @@
         android:layout_weight="1"
         android:text="@string/settings"
         android:onClick="onClickSettings"
+        android:background="@color/colorRed"
         />
 
 </LinearLayout>
