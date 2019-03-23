@@ -30,8 +30,8 @@
         android:hint="@string/amount"
         android:textSize="26sp"
         android:layout_margin="40sp"
-        android:importantForAutofill="no"
         android:inputType="numberDecimal"
+        android:layout_weight="1"
         />
 
     <Button
