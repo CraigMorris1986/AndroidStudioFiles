@@ -10,7 +10,7 @@
     <TextView
         android:id="@+id/convertedText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:textSize="36sp"
         android:text=""
         android:layout_weight="1"
