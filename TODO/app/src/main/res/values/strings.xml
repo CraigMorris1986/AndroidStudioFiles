@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">TODO</string>
+    <string name="add_item">Add Item</string>
+    <string name="user_hint">Please enter a todo item</string>
+
+    <string-array name="test">
+        <item>thing1</item>
+        <item>thing2</item>
+        <item>thing3</item>
+        <item>thing4</item>
+    </string-array>
+</resources>
