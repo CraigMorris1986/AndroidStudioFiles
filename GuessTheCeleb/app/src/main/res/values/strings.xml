@@ -1,4 +1,18 @@
 <resources>
     <string name="app_name">GuessTheCeleb</string>
     <string name="imgDescription">A game character image</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="play_button">Play</string>
+    <string name="status_text_top_placeholder">Time reamining: 0 seconds</string>
+    <string name="status_text_bottom_placeholder">Score = 0</string>
+    <string-array name="difficulty">
+        <item>easy</item>
+        <item>medium</item>
+        <item>hard</item>
+        <item>expert</item>
+    </string-array>
+
+
 </resources>

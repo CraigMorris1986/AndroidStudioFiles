@@ -6,6 +6,18 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:spinnerItemStyle">@style/headline</item>
+        <item name="android:spinnerDropDownItemStyle">@style/headline</item>
+        <item name="android:textViewStyle">@style/large</item>
+    </style>
+    
+    <style name="headline" parent="TextAppearance.AppCompat.Display2">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="large" parent="TextAppearance.AppCompat.Large">
+        <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
 </resources>

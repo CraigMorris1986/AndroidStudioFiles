@@ -30,9 +30,9 @@ public class MainActivity extends AppCompatActivity {
 //                System.out.println("failed to get names");
 //            }
 //        }
-        ImageManager imageManager = new ImageManager(this.getAssets(), "celebs");
-        ImageView imageView = findViewById(R.id.image);
-        imageView.setImageBitmap(imageManager.get(2));
+//        ImageManager imageManager = new ImageManager(this.getAssets(), "celebs");
+//        ImageView imageView = findViewById(R.id.image);
+//        imageView.setImageBitmap(imageManager.get(2));
 
 
     }
