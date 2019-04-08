@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">GuessTheCeleb</string>
+    <string name="imgDescription">A game character image</string>
+</resources>
