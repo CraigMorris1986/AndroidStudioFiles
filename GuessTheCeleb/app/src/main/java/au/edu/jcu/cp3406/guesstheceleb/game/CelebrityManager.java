@@ -1,4 +1,4 @@
-package au.edu.jcu.cp3406.guesstheceleb;
+package au.edu.jcu.cp3406.guesstheceleb.game;
 
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
@@ -8,12 +8,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 
-public class ImageManager {
+public class CelebrityManager {
     private String assetPath;
     private AssetManager assetManager;
 //    private String[] imageNames;
 
-    ImageManager(AssetManager assetManager, String assetPath) {
+    public CelebrityManager(AssetManager assetManager, String assetPath) {
         this.assetManager = assetManager;
         this.assetPath = assetPath;
         try {
@@ -22,12 +22,12 @@ public class ImageManager {
         }
         catch (IOException e) {
             e.printStackTrace();
-            System.out.println("ImageManager constructor failure");
+            System.out.println("CelebrityManager constructor failure");
         }
 
     }
 
-    Bitmap get(int i) {
+    public Bitmap get(int i) {
         try {
             String[] imageNames = assetManager.list(assetPath);
             InputStream stream = assetManager.open(assetPath + "/" + imageNames[i]);
@@ -36,5 +36,29 @@ public class ImageManager {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public String getName(int index) {
+        String name;
+        try {
+            String[] imageNames = assetManager.list(assetPath);
+            String filename = imageNames[index];
+            name = filename.substring(0, filename.lastIndexOf("."));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            name = "filename error";
+        }
+        return name;
+    }
+
+    public int count() {
+        try {
+            String[] imageNames = assetManager.list(assetPath);
+            return imageNames.length;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 }
