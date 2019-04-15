@@ -1,5 +1,6 @@
 package au.edu.jcu.cp3406.guesstheceleb;
 
+import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -32,9 +33,7 @@ public class MainActivity extends AppCompatActivity {
 //        }
 //        CelebrityManager imageManager = new CelebrityManager(this.getAssets(), "celebs");
 //        ImageView imageView = findViewById(R.id.image);
-//        imageView.setImageBitmap(imageManager.get(2));
-
-
+//        imageView.setImageBitmap(imageManager.get(2))
     }
 
 
