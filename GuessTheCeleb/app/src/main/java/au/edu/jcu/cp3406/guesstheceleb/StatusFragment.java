@@ -18,8 +18,8 @@ import android.widget.TextView;
  */
 public class StatusFragment extends Fragment {
     private StateListener listener;
-    private Textview message; // this wont work as it doesn't not extend from a class that recognises Textview class
-    private Textview score; // can't implement Textview Class either can can only extend from one parent class
+//    private Textview message; // this wont work as it doesn't not extend from a class that recognises Textview class
+//    private Textview score; // can't implement Textview Class either can can only extend from one parent class
 
     public StatusFragment() {
         // Required empty public constructor
@@ -41,6 +41,6 @@ public class StatusFragment extends Fragment {
         listener = (StateListener) context;
     }
 
-    public void setMessage(String text) {message.setText(text);}
-    public void setScore(String text) {score.setText(text);}
+//    public void setMessage(String text) {message.setText(text);}
+//    public void setScore(String text) {score.setText(text);}
 }
