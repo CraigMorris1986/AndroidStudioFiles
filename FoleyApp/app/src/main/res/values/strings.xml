@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Foley App</string>
+    <string name="pistol">Pistol</string>
+    <string name="shotgun">Shotgun</string>
+    <string name="drive">drive</string>
+    <string name="ignition">ignition</string>
+    <string name="giggle">giggle</string>
+    <string name="baby_talk">baby talk</string>
+    <string name="message">message</string>
+    <string name="mac">mac</string>
+    <string name="pc">pc</string>
+    <string name="robot">robot</string>
+    <string name="pig">pig</string>
+    <string name="whale">whale</string>
+</resources>
