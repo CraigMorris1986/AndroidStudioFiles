@@ -1,5 +1,7 @@
 package au.edu.jcu.cp3406.educationapp;
 
+import android.annotation.SuppressLint;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -81,8 +83,7 @@ public class GamePlay {
                 this.correctAnswer = variableNumLarger + variableNumSmaller;
                 break;
             case 2:
-                String currentQuestion = getQuestion();
-                if (currentQuestion.contains("+")) {
+                if (getQuestion().contains("+")) {
                     this.correctAnswer = variableNumLarger - variableNumSmaller;
                 } else {
                     this.correctAnswer = variableNumLarger + variableNumSmaller;
@@ -118,6 +119,7 @@ public class GamePlay {
      * Method to generate questions for the game activity as formatted Strings depending on the global difficulty setting.
      * @return returns a String value of a formatted question used for display to the user.
      */
+    @SuppressLint("DefaultLocale")
     public String getQuestion() {
         String question = "";
         switch (difficulty) {

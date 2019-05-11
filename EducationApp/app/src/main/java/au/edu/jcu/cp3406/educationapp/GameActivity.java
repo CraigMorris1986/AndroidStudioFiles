@@ -18,6 +18,7 @@ public class GameActivity extends AppCompatActivity {
     GamePlay gamePlay;
     int questionNumber = 0;
     int correctAnswer;
+    int score = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,13 +62,20 @@ public class GameActivity extends AppCompatActivity {
             setPossibleAnswers();
             this.correctAnswer = gamePlay.getCorrectAnswer();
             questionNumber++;
+            score = score + 25 * difficultyValue;
+        } else {
+            // deduct score point for selecting wrong answer
+            score -= 20;
+            if (score <=0) { // reset score to 0 if value is negative
+                score = 0;
+            }
         }
-        // check to finish the game event by calling another activity intent
-        if (questionNumber > 3) {
-            Intent intent = new Intent(this, FinishGame.class);
-            //pass score into the activity for display here...
-            startActivity(intent);
-        }
+            // check to finish the game event by calling another activity intent
+            if (questionNumber > 10) {
+                Intent intent = new Intent(this, FinishGame.class);
+                //TODO: pass score into the activity for display here...
+                startActivity(intent);
+            }
     }
 
     private void setQuestion() {
