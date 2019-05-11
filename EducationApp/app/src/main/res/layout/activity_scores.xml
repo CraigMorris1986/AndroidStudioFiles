@@ -23,40 +23,51 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="TextView" />
+        android:gravity="center|left"
+        android:text="TextView"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/score2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="TextView" />
+        android:gravity="center|left"
+        android:text="TextView"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/score3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="TextView" />
+        android:gravity="center|left"
+        android:text="TextView"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/score4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="TextView" />
+        android:gravity="center|left"
+        android:text="TextView"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/score5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="TextView" />
+        android:gravity="center|left"
+        android:text="TextView"
+        android:textSize="24sp" />
 
     <Button
         android:id="@+id/buttonSettingBack"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="main menu" />
+        android:text="@string/mainMenuString"
+        android:onClick="onClickScoresActivity"/>
 </LinearLayout>

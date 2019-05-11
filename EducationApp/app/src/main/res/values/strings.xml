@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Education App</string>
+    <string name="questionmarkString">\?</string>
+    <string name="playString">play</string>
+    <string name="scoresString">scores</string>
+    <string name="settingsString">settings</string>
+    <string name="quitString">quit</string>
+    <string name="welcomeString">Welcome to the Education App!</string>
+    <string name="mainMenuString">main menu</string>
+    <string name="leaveGameString">leave game</string>
+    <string name="skipString">skip</string>
 </resources>

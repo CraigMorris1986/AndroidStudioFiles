@@ -16,6 +16,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
     private SensorManager sensorManager;
     private Sensor sensorGravity;
+    TextView display;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public void onSensorChanged(SensorEvent event) {
         Log.i("tag", String.format("x= %f y= %f z= %f", event.values[0], event.values[1], event.values[2]));
         @SuppressLint("DefaultLocale") String values = String.format("x= %f\n y= %f\n z= %f", event.values[0], event.values[1], event.values[2]);
-        TextView display = findViewById(R.id.displayText);
+        display = findViewById(R.id.displayText);
         display.setText(values);
 
     }

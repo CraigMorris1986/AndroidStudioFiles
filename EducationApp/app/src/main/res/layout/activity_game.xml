@@ -1,9 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GameActivity">
+    tools:context=".GameActivity"
+    android:orientation="vertical"
+    >
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/gameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="3"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="24sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:orientation="horizontal"
+        style="?android:attr/buttonBarStyle">
+
+        <Button
+            android:id="@+id/gameButton1"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10sp"
+            android:layout_marginTop="30sp"
+            android:layout_marginRight="10sp"
+            android:layout_marginBottom="30sp"
+            android:layout_weight="1"
+            android:text="@string/questionmarkString"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/gameButton2"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10sp"
+            android:layout_marginTop="30sp"
+            android:layout_marginRight="10sp"
+            android:layout_marginBottom="30sp"
+            android:layout_weight="1"
+            android:text="@string/questionmarkString"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/gameButton3"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10sp"
+            android:layout_marginTop="30sp"
+            android:layout_marginRight="10sp"
+            android:layout_marginBottom="30sp"
+            android:layout_weight="1"
+            android:text="@string/questionmarkString"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/gameBackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10sp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/leaveGameString"
+            android:onClick="onClickGameActivityNav"/>
+
+        <Button
+            android:id="@+id/gameSkipButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10sp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/skipString"
+            android:onClick="onClickGameActivityNav"/>
+    </LinearLayout>
+</LinearLayout>

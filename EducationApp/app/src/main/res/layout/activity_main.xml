@@ -14,42 +14,51 @@
         android:layout_height="wrap_content"
         android:layout_weight="4"
         android:gravity="center"
-        android:text="TextView"
-        android:textAlignment="center" />
+        android:text="@string/welcomeString"
+        android:textAlignment="center"
+        android:textSize="24sp" />
 
     <Button
         android:id="@+id/buttonPlay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
         android:layout_marginBottom="3dp"
         android:layout_weight="1"
-        android:text="play"
-        android:textStyle="bold" />
+        android:text="@string/playString"
+        android:textStyle="bold"
+        android:onClick="onClickMainActivity"/>
 
     <Button
         android:id="@+id/buttonScores"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
         android:layout_marginBottom="3dp"
         android:layout_weight="1"
-        android:text="scores"
-        android:textStyle="bold" />
+        android:text="@string/scoresString"
+        android:textStyle="bold"
+        android:onClick="onClickMainActivity"/>
 
     <Button
         android:id="@+id/buttonSettings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
         android:layout_marginBottom="3dp"
         android:layout_weight="1"
-        android:text="settings"
-        android:textStyle="bold" />
+        android:text="@string/settingsString"
+        android:textStyle="bold"
+        android:onClick="onClickMainActivity"/>
 
     <Button
         android:id="@+id/buttonQuit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
         android:layout_marginBottom="3dp"
         android:layout_weight="1"
-        android:text="quit"
-        android:textStyle="bold" />
+        android:text="@string/quitString"
+        android:textStyle="bold"
+        android:onClick="onClickMainActivity"/>
 </LinearLayout>
