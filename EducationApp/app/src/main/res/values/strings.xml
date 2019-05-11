@@ -10,4 +10,6 @@
     <string name="leaveGameString">leave game</string>
     <string name="skipString">skip</string>
     <string name="playAgainString">play again</string>
+    <string name="saveScoreString">save score</string>
+    <string name="userEntryHintString">Enter you name...</string>
 </resources>

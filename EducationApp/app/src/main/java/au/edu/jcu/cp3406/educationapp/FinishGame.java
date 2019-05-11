@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 public class FinishGame extends AppCompatActivity {
     int score;
+    String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

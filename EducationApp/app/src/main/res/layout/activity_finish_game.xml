@@ -18,6 +18,23 @@
         android:text=""
         android:textSize="36sp" />
 
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"
+        android:ems="10"
+        android:hint="@string/userEntryHintString"
+        android:inputType="textPersonName"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/saveScoreButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/saveScoreString" />
+
     <Button
         android:id="@+id/finishPlayAgainButton"
         android:layout_width="match_parent"
