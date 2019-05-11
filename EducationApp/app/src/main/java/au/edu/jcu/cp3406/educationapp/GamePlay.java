@@ -7,15 +7,17 @@ import java.util.List;
 import java.util.Random;
 
 public class GamePlay {
-    Random random = new Random();
-    int difficulty;
-    int variableNumLarger;
-    int variableNumSmaller;
-    int correctAnswer;
+    private Random random = new Random();
+    private int difficulty;
+    private int variableNumLarger;
+    private int variableNumSmaller;
+    private int correctAnswer;
+    public String currentQuestion;
     List<Integer> answersList = new ArrayList<>();
 
     /**
      * Constructor method for the GamePlay class.
+     *
      * @param difficultyValue takes an integer value from 1 to 3 for the difficulty setting for the game.
      */
     GamePlay(int difficultyValue) {
@@ -75,48 +77,40 @@ public class GamePlay {
 
     /**
      * This method generates the correct answer for the question based on the difficulty selected
-     * and sets it to GamePlay.correctAnswer as an int
+     * and sets it to GamePlay.correctAnswer as an int. Method also sets the class attribute String
+     * currentQuestion when called to set the question in the class as the getQuestion method will
+     * is unreliable when called as it creates question randomly.
      */
     private void generateCorrectAnswer() {
+        currentQuestion = getQuestion();
         switch (difficulty) {
             case 1:
                 this.correctAnswer = variableNumLarger + variableNumSmaller;
                 break;
             case 2:
-                if (getQuestion().contains("+")) {
+                if (currentQuestion.contains("+")) {
                     this.correctAnswer = variableNumLarger - variableNumSmaller;
+                    break;
                 } else {
                     this.correctAnswer = variableNumLarger + variableNumSmaller;
+                    break;
                 }
-                break;
             case 3:
-                if (getQuestion().contains("+")) {
+                if (currentQuestion.contains("+")) {
                     this.correctAnswer = (variableNumLarger - variableNumSmaller);
                     this.correctAnswer = this.correctAnswer / 2;
+                    break;
                 } else {
                     this.correctAnswer = (variableNumLarger + variableNumSmaller);
                     this.correctAnswer = this.correctAnswer * 3;
+                    break;
                 }
-                break;
         }
     }
 
     /**
-     * Method sets the two variable numbers as integers required for the game arithmetic, first
-     * number will be the larger integer selected and random using taking the argument as the upper
-     * bound limit, second number is set using the first number as the upper bound thus generating
-     * a smaller number than the first. Method will add 10 to the base random number generated to
-     * avoid 0 and integers too close to it.
-     *
-     * @param rangeMax takes an integer value as argument to set the initial upper bound for the random number generator
-     */
-    private void setVariableNumbers(int rangeMax) {
-        this.variableNumLarger = random.nextInt(rangeMax) + 10; // stops random numbers below 5
-        this.variableNumSmaller = random.nextInt(variableNumLarger);
-    }
-
-    /**
      * Method to generate questions for the game activity as formatted Strings depending on the global difficulty setting.
+     *
      * @return returns a String value of a formatted question used for display to the user.
      */
     @SuppressLint("DefaultLocale")
@@ -147,7 +141,22 @@ public class GamePlay {
     }
 
     /**
+     * Method sets the two variable numbers as integers required for the game arithmetic, first
+     * number will be the larger integer selected and random using taking the argument as the upper
+     * bound limit, second number is set using the first number as the upper bound thus generating
+     * a smaller number than the first. Method will add 10 to the base random number generated to
+     * avoid 0 and integers too close to it.
+     *
+     * @param rangeMax takes an integer value as argument to set the initial upper bound for the random number generator
+     */
+    private void setVariableNumbers(int rangeMax) {
+        this.variableNumLarger = random.nextInt(rangeMax) + 10; // stops random numbers below 5
+        this.variableNumSmaller = random.nextInt(variableNumLarger);
+    }
+
+    /**
      * getter method to get the correct answer for the current question instance.
+     *
      * @return integer value of the correct answer.
      */
     public int getCorrectAnswer() {
