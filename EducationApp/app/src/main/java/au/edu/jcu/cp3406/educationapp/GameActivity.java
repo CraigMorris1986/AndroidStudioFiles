@@ -16,16 +16,21 @@ import java.util.List;
 public class GameActivity extends AppCompatActivity {
     int difficultyValue;
     GamePlay gamePlay;
+    int questionNumber = 0;
+    int correctAnswer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        difficultyValue = 2;
+        difficultyValue = 3;
 
         gamePlay = new GamePlay(difficultyValue);
         setQuestion();
         setPossibleAnswers();
+        this.correctAnswer = gamePlay.getCorrectAnswer();
+
+
 
     }
 
@@ -44,6 +49,24 @@ public class GameActivity extends AppCompatActivity {
                 //TODO: add code to skip the question
                 //TODO: add Toast popup to show the question was skipped
                 break;
+        }
+    }
+
+    public void onClickGameAnswer(View view) {
+        int clickedAnswerButtonID = view.getId();
+        Button clickedButton = findViewById(clickedAnswerButtonID);
+        if (Integer.parseInt(clickedButton.getText().toString()) == correctAnswer) {
+            gamePlay = new GamePlay(difficultyValue);
+            setQuestion();
+            setPossibleAnswers();
+            this.correctAnswer = gamePlay.getCorrectAnswer();
+            questionNumber++;
+        }
+        // check to finish the game event by calling another activity intent
+        if (questionNumber > 3) {
+            Intent intent = new Intent(this, FinishGame.class);
+            //pass score into the activity for display here...
+            startActivity(intent);
         }
     }
 

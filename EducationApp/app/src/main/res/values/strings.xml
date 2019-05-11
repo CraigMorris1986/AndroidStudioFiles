@@ -9,4 +9,5 @@
     <string name="mainMenuString">main menu</string>
     <string name="leaveGameString">leave game</string>
     <string name="skipString">skip</string>
+    <string name="playAgainString">play again</string>
 </resources>

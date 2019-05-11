@@ -35,7 +35,8 @@
             android:layout_marginBottom="30sp"
             android:layout_weight="1"
             android:text="@string/questionmarkString"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:onClick="onClickGameAnswer"/>
 
         <Button
             android:id="@+id/gameButton2"
@@ -48,7 +49,8 @@
             android:layout_marginBottom="30sp"
             android:layout_weight="1"
             android:text="@string/questionmarkString"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:onClick="onClickGameAnswer"/>
 
         <Button
             android:id="@+id/gameButton3"
@@ -61,7 +63,8 @@
             android:layout_marginBottom="30sp"
             android:layout_weight="1"
             android:text="@string/questionmarkString"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:onClick="onClickGameAnswer"/>
     </LinearLayout>
 
     <LinearLayout

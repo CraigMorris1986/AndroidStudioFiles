@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10sp"
+    android:orientation="vertical"
+    tools:context=".FinishGame">
+
+    <TextView
+        android:id="@+id/finishText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="5"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="36sp" />
+
+    <Button
+        android:id="@+id/finishPlayAgainButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/playAgainString"
+        android:onClick="onClickFinishActivity"/>
+
+    <Button
+        android:id="@+id/finishMainMenuButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/mainMenuString"
+        android:onClick="onClickFinishActivity"/>
+</LinearLayout>
