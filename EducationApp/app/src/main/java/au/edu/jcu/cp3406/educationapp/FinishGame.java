@@ -1,26 +1,51 @@
 package au.edu.jcu.cp3406.educationapp;
 
+import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class FinishGame extends AppCompatActivity {
+    private SQLiteDatabase db;
     int score;
     String userName;
 
+    @SuppressLint("DefaultLocale")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finish_game);
         Intent intent = getIntent();
         score = intent.getIntExtra("score", 0);
+
+        SQLiteOpenHelper databaseHelper = new DatabaseHelper(this);
+        db = databaseHelper.getWritableDatabase();
+        Log.i("tag", db.toString());
+
         TextView scoreDisplay = findViewById(R.id.finishText);
         scoreDisplay.setText(String.format("Good work!\nYour score is %d", score));
     }
 
+    /**
+     * Method to handle the onClick events for the Activities Button objects via a switch statement that
+     * checks the Button objects text value. On a Button text value of "save score" this method will
+     * take the users name from the EditText object and the users score from the GameActivity and save it
+     * to the SQLite database. This method also checks if the user did not enter a name and assigns "Nemo"
+     * as the default.
+     * @param view
+     */
     public void onClickFinishActivity(View view) {
         Intent intent;
         int clickedButtonID = view.getId();
@@ -35,6 +60,28 @@ public class FinishGame extends AppCompatActivity {
                 intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 break;
+            case "save score":
+                EditText userInput = findViewById(R.id.editText);
+                userName = userInput.getText().toString().trim();
+                if (userName.equals("")) {
+                    userName = "Nemo";
+                }
+                ContentValues values = new ContentValues();
+                values.put("NAME", userName);
+                values.put("SCORE", score);
+                Log.i("tag", values.toString());
+                db.insert("SCORES", null, values);
+                Toast toast = Toast.makeText(this, "Score save successful!", Toast.LENGTH_SHORT);
+                toast.show();
         }
+    }
+
+    /**
+     * Class onDestroy method to close the SQLite database when the Activity is finished.
+     */
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        db.close();
     }
 }

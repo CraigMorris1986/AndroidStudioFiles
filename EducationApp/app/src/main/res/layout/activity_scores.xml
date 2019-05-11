@@ -13,55 +13,67 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:fontFamily="serif-monospace"
         android:gravity="center"
         android:text="Top 5 Scores"
         android:textAlignment="center"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/score1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_weight="1"
-        android:gravity="center|left"
-        android:text="TextView"
-        android:textSize="24sp" />
+        android:fontFamily="serif-monospace"
+        android:gravity="center"
+        android:text="@string/noScoreString"
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/score2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_weight="1"
-        android:gravity="center|left"
-        android:text="TextView"
-        android:textSize="24sp" />
+        android:fontFamily="serif-monospace"
+        android:gravity="center"
+        android:text="@string/noScoreString"
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/score3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_weight="1"
-        android:gravity="center|left"
-        android:text="TextView"
-        android:textSize="24sp" />
+        android:fontFamily="serif-monospace"
+        android:gravity="center"
+        android:text="@string/noScoreString"
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/score4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_weight="1"
-        android:gravity="center|left"
-        android:text="TextView"
-        android:textSize="24sp" />
+        android:fontFamily="serif-monospace"
+        android:gravity="center"
+        android:text="@string/noScoreString"
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/score5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_weight="1"
-        android:gravity="center|left"
-        android:text="TextView"
-        android:textSize="24sp" />
+        android:fontFamily="serif-monospace"
+        android:gravity="center"
+        android:text="@string/noScoreString"
+        android:textSize="30sp" />
 
     <Button
         android:id="@+id/buttonSettingBack"

@@ -12,4 +12,5 @@
     <string name="playAgainString">play again</string>
     <string name="saveScoreString">save score</string>
     <string name="userEntryHintString">Enter you name...</string>
+    <string name="noScoreString">no score set</string>
 </resources>

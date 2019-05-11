@@ -6,9 +6,11 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,7 +32,7 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        difficultyValue = 2;
+        difficultyValue = 1; //TODO: REMOVE THIS -> hardcoded for testing
 
         if (savedInstanceState != null) {
             savedInstanceState.putInt("seconds", runTimeInSeconds);
@@ -38,15 +40,16 @@ public class GameActivity extends AppCompatActivity {
             savedInstanceState.putBoolean("wasRunning", timerWasRunning);
         }
         // set the initial question for the game
-        gamePlay = new GamePlay(difficultyValue);
-        setQuestion();
-        setPossibleAnswers();
-        this.correctAnswer = gamePlay.getCorrectAnswer();
-
+        generateGameInstance();
         runGameTimer();
 
     }
 
+    /**
+     * Method to handle button navigation functionality in the apps GameActivity. Creates Toast messages
+     * when navigation is used before the game ends.
+     * @param view takes a view object as argument to assign clicked Button object ID
+     */
     public void onClickGameActivityNav(View view) {
         Intent intent;
         int clickedButtonID = view.getId();
@@ -55,53 +58,87 @@ public class GameActivity extends AppCompatActivity {
         switch (buttonText) {
             case "leave game":
                 intent = new Intent(this, MainActivity.class);
-                //TODO: add Toast popup to show game was left early
+                Toast toast = Toast.makeText(this, "You have left the game", Toast.LENGTH_SHORT);
+                toast.show();
                 startActivity(intent);
                 break;
             case "skip":
-                //TODO: add code to skip the question
-                //TODO: add Toast popup to show the question was skipped
+                //TODO: add sound for skip
+                generateGameInstance();
+                score -= score * difficultyValue;
+                if (score <= 0) {
+                    score =0;
+                }
+                Toast toastSkip = Toast.makeText(this, "Question Skipped...", Toast.LENGTH_SHORT);
+                toastSkip.show();
                 break;
         }
     }
 
+    /**
+     * Method to set event listener for button click events for the possible answers in the game.
+     * Checks if the user has clicked the correct answer and moves the game forward. If wrong answer
+     * was clicked creates a Toast message and deducts the total score from the user for the game.
+     * On game completion score is passed through an Intent object to FinishGame activity.
+     * @param view takes a view object as argument to assign clicked Button object ID
+     */
     public void onClickGameAnswer(View view) {
         int clickedAnswerButtonID = view.getId();
         Button clickedButton = findViewById(clickedAnswerButtonID);
         if (Integer.parseInt(clickedButton.getText().toString()) == correctAnswer) {
-            gamePlay = new GamePlay(difficultyValue);
-            setQuestion();
-            setPossibleAnswers();
-            this.correctAnswer = gamePlay.getCorrectAnswer();
-            questionNumber++;
+            generateGameInstance();
             score = score + 25 * difficultyValue;
+            //TODO: add sound for correct answer
         } else {
             // deduct score point for selecting wrong answer
             score -= 20;
+            //TODO: add sound for wrong answer
+            Toast toastSkip = Toast.makeText(this, "Wrong answer, -20 points", Toast.LENGTH_SHORT);
+            toastSkip.show();
             if (score <=0) { // reset score to 0 if value is negative
                 score = 0;
             }
         }
             // check to finish the game event by calling another activity intent
-            if (questionNumber > 2) {
+            if (questionNumber > 1) {
                 if (score - runTimeInSeconds < 0) {
                     score = 0;
                 } else {
                     score = score - runTimeInSeconds;
                 }
                 Intent intent = new Intent(this, FinishGame.class);
-                //TODO: pass score into the activity for display here...
                 intent.putExtra("score", score);
                 startActivity(intent);
             }
     }
 
+    /**
+     * Methodg generates a game question instance by creating a new GamePlay object and sets the
+     * question and the possible answers in the GUI for the user to solve and increments the question counter
+     * by 1.
+     */
+    private void generateGameInstance() {
+        gamePlay = new GamePlay(difficultyValue);
+        setQuestion();
+        setPossibleAnswers();
+        this.correctAnswer = gamePlay.getCorrectAnswer();
+        questionNumber++;
+    }
+
+    /**
+     * Method sets the generated random question String from a GamePlay object to the Activity
+     * TextView object for display to the user.
+     */
     private void setQuestion() {
         TextView gameTextView = findViewById(R.id.gameTextView);
         @SuppressLint("DefaultLocale") String question = gamePlay.currentQuestion;
         gameTextView.setText(question);
     }
 
+    /**
+     * Method sets the possible answers for a game instance from the array created by a GamePlay object
+     * to the activity game buttons for the user to choose from.
+     */
     @SuppressLint("SetTextI18n")
     private void setPossibleAnswers() {
         Collections.shuffle(gamePlay.answersList);

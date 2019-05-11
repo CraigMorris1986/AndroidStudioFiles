@@ -14,6 +14,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    /**
+     * Method for main menu navigation by handling Button objects onClick events by checking for
+     * the buttons text value in a switch statement.
+     * @param view
+     */
     public void onClickMainActivity(View view) {
         Intent intent;
         int clickedButtonID = view.getId();
