@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -77,10 +79,13 @@ public class ScoresActivity extends AppCompatActivity {
     /**
      * Method to handle the onClick event to return back to the main menu from this Activity. Used
      * only for navigation.
-     * @param view
+     * @param view takes a view object as a parameter
      */
     public void onClickScoresActivity(View view) {
         Intent intent = new Intent(this, MainActivity.class);
+        Button clickedButton = findViewById(R.id.buttonSettingBack);
+        Animation animate =  AnimationUtils.loadAnimation(this, R.anim.bounce);
+        clickedButton.startAnimation(animate);
         startActivity(intent);
     }
 }

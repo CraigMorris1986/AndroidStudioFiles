@@ -6,10 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -17,6 +14,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -57,12 +56,14 @@ public class FinishGame extends AppCompatActivity {
      * take the users name from the EditText object and the users score from the GameActivity and save it
      * to the SQLite database. This method also checks if the user did not enter a name and assigns "Nemo"
      * as the default.
-     * @param view
+     * @param view takes a view object as a parameter
      */
     public void onClickFinishActivity(View view) {
         Intent intent;
         int clickedButtonID = view.getId();
         Button clickedButton = findViewById(clickedButtonID);
+        Animation animate =  AnimationUtils.loadAnimation(this, R.anim.bounce);
+        clickedButton.startAnimation(animate);
         String buttonText = clickedButton.getText().toString().toLowerCase();
         switch (buttonText) {
             case "play again":

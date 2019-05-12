@@ -21,8 +21,8 @@
         android:layout_gravity="center"
         android:layout_weight="3"
         android:gravity="center"
-        android:text="TextView"
-        android:textSize="24sp" />
+        android:text=""
+        android:textSize="36sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,9 +41,12 @@
             android:layout_marginRight="10sp"
             android:layout_marginBottom="30sp"
             android:layout_weight="1"
+            android:onClick="onClickGameAnswer"
             android:text="@string/questionmarkString"
+            android:textColor="#3F51B5"
+            android:textColorHighlight="#AA2121"
             android:textSize="24sp"
-            android:onClick="onClickGameAnswer"/>
+            tools:ignore="NestedWeights" />
 
         <Button
             android:id="@+id/gameButton2"
@@ -55,9 +58,11 @@
             android:layout_marginRight="10sp"
             android:layout_marginBottom="30sp"
             android:layout_weight="1"
+            android:onClick="onClickGameAnswer"
             android:text="@string/questionmarkString"
-            android:textSize="24sp"
-            android:onClick="onClickGameAnswer"/>
+            android:textColor="#3F51B5"
+            android:textColorHighlight="#AA2121"
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/gameButton3"
@@ -69,9 +74,11 @@
             android:layout_marginRight="10sp"
             android:layout_marginBottom="30sp"
             android:layout_weight="1"
+            android:onClick="onClickGameAnswer"
             android:text="@string/questionmarkString"
-            android:textSize="24sp"
-            android:onClick="onClickGameAnswer"/>
+            android:textColor="#3F51B5"
+            android:textColorHighlight="#AA2121"
+            android:textSize="24sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -89,7 +96,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/leaveGameString"
-            android:onClick="onClickGameActivityNav"/>
+            android:onClick="onClickGameActivityNav"
+            tools:ignore="ButtonStyle,NestedWeights" />
 
         <Button
             android:id="@+id/gameSkipButton"
@@ -100,6 +108,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/skipString"
-            android:onClick="onClickGameActivityNav"/>
+            android:onClick="onClickGameActivityNav"
+            tools:ignore="ButtonStyle" />
     </LinearLayout>
 </LinearLayout>

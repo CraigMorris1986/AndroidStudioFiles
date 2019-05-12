@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10sp"
+    android:background="#FFFFFF"
     android:orientation="vertical"
     tools:context=".SettingsActivity">
 
@@ -38,9 +39,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:checked="true"
             android:text="@string/standardString"
-            android:textSize="24sp"
-            android:checked="true"/>
+            android:textSize="24sp" />
 
         <RadioButton
             android:id="@+id/hardSettingButton"
@@ -68,18 +69,20 @@
         android:layout_marginLeft="30sp"
         android:layout_marginRight="30sp"
         android:layout_weight="2"
+        android:checked="true"
         android:paddingEnd="50sp"
         android:text="@string/playSoundsString"
         android:textOff="@string/soundOffString"
         android:textOn="@string/soundOnString"
         android:textSize="24sp"
-        tools:ignore="RtlSymmetry"
-        android:checked="true"/>
+        tools:ignore="RtlSymmetry" />
 
     <Button
         android:id="@+id/settingsBackButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp"
         android:layout_weight="1"
         android:onClick="onClickSettingsActivity"
         android:text="@string/mainMenuString"

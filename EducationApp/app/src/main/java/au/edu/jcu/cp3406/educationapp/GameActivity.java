@@ -8,6 +8,8 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,12 +30,14 @@ public class GameActivity extends AppCompatActivity {
     TextView questionDisplay;
     MediaPlayer sound;
     Context activityContext = this;
+    private Animation animate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         checkForSettingsIntent();
+        animate =  AnimationUtils.loadAnimation(this, R.anim.bounce);
 
         if (savedInstanceState != null) {
             savedInstanceState.putInt("seconds", runTimeInSeconds);
@@ -58,6 +62,7 @@ public class GameActivity extends AppCompatActivity {
         int clickedButtonID = view.getId();
         Button clickedButton = findViewById(clickedButtonID);
         String buttonText = clickedButton.getText().toString().toLowerCase();
+        clickedButton.startAnimation(animate);
         switch (buttonText) {
             case "leave game":
                 intent = new Intent(this, MainActivity.class);
@@ -68,7 +73,6 @@ public class GameActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case "skip":
-                //TODO: add sound for skip
                 generateGameInstance();
                 score -= score * difficulty;
                 if (score <= 0) {
@@ -89,10 +93,11 @@ public class GameActivity extends AppCompatActivity {
      *
      * @param view takes a view object as argument to assign clicked Button object ID
      */
-    public void onClickGameAnswer(View view) {
+    public void onClickGameAnswer(View view) throws InterruptedException {
         int clickedAnswerButtonID = view.getId();
         Button clickedButton = findViewById(clickedAnswerButtonID);
         if (Integer.parseInt(clickedButton.getText().toString()) == correctAnswer) {
+            clickedButton.startAnimation(animate);
             generateGameInstance();
             score = score + 25 * difficulty;
             setQuestionDisplay();

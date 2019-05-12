@@ -22,4 +22,5 @@
     <string name="soundOnString">Sound On</string>
     <string name="playSoundsString">Play Sounds</string>
     <string name="tweetString">tweet</string>
+    <string name="topScoresString">Top 5 Scores</string>
 </resources>

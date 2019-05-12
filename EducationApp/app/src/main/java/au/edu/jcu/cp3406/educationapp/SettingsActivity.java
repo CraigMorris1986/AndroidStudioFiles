@@ -4,17 +4,17 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 
 public class SettingsActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
-    private int difficulty;
     private boolean soundIsOn;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,10 +25,12 @@ public class SettingsActivity extends AppCompatActivity implements CompoundButto
 
     public void onClickSettingsActivity(View view) {
         Intent intent = new Intent(this, MainActivity.class);
-        // TODO: add code to pass setting to other activities
-        difficulty = getDifficulty();
+        Button clickedButton = findViewById(R.id.settingsBackButton);
+        int difficulty = getDifficulty();
         intent.putExtra("difficulty", difficulty);
         intent.putExtra("soundIsOn", soundIsOn);
+        Animation animate =  AnimationUtils.loadAnimation(this, R.anim.bounce);
+        clickedButton.startAnimation(animate);
         startActivity(intent);
     }
 

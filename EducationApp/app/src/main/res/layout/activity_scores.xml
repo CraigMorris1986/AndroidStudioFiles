@@ -15,7 +15,7 @@
         android:layout_weight="1"
         android:fontFamily="serif-monospace"
         android:gravity="center"
-        android:text="Top 5 Scores"
+        android:text="@string/topScoresString"
         android:textAlignment="center"
         android:textSize="30sp"
         android:textStyle="bold" />
@@ -79,7 +79,10 @@
         android:id="@+id/buttonSettingBack"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp"
+        android:layout_marginBottom="10sp"
         android:layout_weight="1"
-        android:text="@string/mainMenuString"
-        android:onClick="onClickScoresActivity"/>
+        android:onClick="onClickScoresActivity"
+        android:text="@string/mainMenuString" />
 </LinearLayout>

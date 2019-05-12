@@ -4,14 +4,15 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
     private int difficulty;
     private boolean soundIsOn;
-
+    private Animation animate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,13 +34,15 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Method for main menu navigation by handling Button objects onClick events by checking for
      * the buttons text value in a switch statement.
-     * @param view
+     * @param view take the activity view object as a parameter
      */
     public void onClickMainActivity(View view) {
         Intent intent;
         int clickedButtonID = view.getId();
         Button clickedButton = findViewById(clickedButtonID);
         String buttonText = clickedButton.getText().toString().toLowerCase();
+        animate =  AnimationUtils.loadAnimation(this, R.anim.bounce);
+        clickedButton.startAnimation(animate);
         switch (buttonText) {
             case "play":
                 intent = new Intent(MainActivity.this, GameActivity.class);
