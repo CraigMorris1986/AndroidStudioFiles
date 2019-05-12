@@ -1,6 +1,7 @@
 package au.edu.jcu.cp3406.educationapp;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -44,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(MainActivity.this, GameActivity.class);
                 intent.putExtra("difficulty", difficulty);
                 intent.putExtra("soundIsOn", soundIsOn);
+                if (soundIsOn) {
+                    MediaPlayer sound = MediaPlayer.create(this, R.raw.start);
+                    sound.start();
+                }
                 startActivity(intent);
                 break;
             case "scores":

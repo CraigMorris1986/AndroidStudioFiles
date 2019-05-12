@@ -1,6 +1,7 @@
 package au.edu.jcu.cp3406.educationapp;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -53,5 +54,9 @@ public class SettingsActivity extends AppCompatActivity implements CompoundButto
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         soundIsOn = isChecked;
+        if (soundIsOn) {
+            MediaPlayer sound = MediaPlayer.create(this, R.raw.success);
+            sound.start();
+        }
     }
 }

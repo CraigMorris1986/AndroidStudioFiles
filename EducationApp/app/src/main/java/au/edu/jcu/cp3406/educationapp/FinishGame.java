@@ -2,6 +2,7 @@ package au.edu.jcu.cp3406.educationapp;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -10,6 +11,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,6 +32,7 @@ public class FinishGame extends AppCompatActivity {
     String userName;
     int difficulty;
     private boolean soundIsOn;
+    MediaPlayer sound;
 
     @SuppressLint("DefaultLocale")
     @Override
@@ -66,6 +69,7 @@ public class FinishGame extends AppCompatActivity {
                 intent = new Intent(this, GameActivity.class);
                 intent.putExtra("difficulty", difficulty);
                 intent.putExtra("soundIsOn", soundIsOn);
+                playSound(this, R.raw.start);
                 startActivity(intent);
                 break;
             case "main menu":
@@ -102,6 +106,7 @@ public class FinishGame extends AppCompatActivity {
                     startActivity(i);
                     Toast.makeText(this, "Twitter app isn't found", Toast.LENGTH_LONG).show();
                 }
+                playSound(this, R.raw.tweet);
                 break;
             case "save score":
                 EditText userInput = findViewById(R.id.editText);
@@ -139,6 +144,18 @@ public class FinishGame extends AppCompatActivity {
             return "";
         }
     }
+    /**
+     * Method assigns a MediaPlayer object to the class sound attribute and plays a sound if the class
+     * attribute soundIsOn is set to true.
+     * @param context takes the activity Context object for the MediaPlayer create() method
+     * @param soundID takes the resource int ID for the sound file from R.raw.soundfile
+     */
+    private void playSound(Context context, int soundID) {
+        if (soundIsOn) {
+            sound = MediaPlayer.create(context, soundID);
+            sound.start();
+        }
+    }
 
     /**
      * Class onDestroy method to close the SQLite database when the Activity is finished.
@@ -148,4 +165,6 @@ public class FinishGame extends AppCompatActivity {
         super.onDestroy();
         db.close();
     }
+
+
 }

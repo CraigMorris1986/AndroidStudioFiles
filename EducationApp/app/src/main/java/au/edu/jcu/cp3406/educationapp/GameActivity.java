@@ -1,7 +1,9 @@
 package au.edu.jcu.cp3406.educationapp;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,6 +26,8 @@ public class GameActivity extends AppCompatActivity {
     private boolean timerWasRunning = false;
     private int gameQuestionAmount = 10;
     TextView questionDisplay;
+    MediaPlayer sound;
+    Context activityContext = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +74,7 @@ public class GameActivity extends AppCompatActivity {
                 if (score <= 0) {
                     score = 0;
                 }
+                playSound(activityContext, R.raw.wrong);
                 Toast toastSkip = Toast.makeText(this, "Question Skipped...", Toast.LENGTH_SHORT);
                 toastSkip.show();
                 break;
@@ -95,11 +100,11 @@ public class GameActivity extends AppCompatActivity {
             if (questionNumber > gameQuestionAmount) {
                 questionDisplay.setText("");
             }
-            //TODO: add sound for correct answer
+            playSound(activityContext, R.raw.success);
         } else {
             // deduct score point for selecting wrong answer
             score -= 20;
-            //TODO: add sound for wrong answer
+            playSound(activityContext, R.raw.wrong);
             Toast toastSkip = Toast.makeText(this, "Wrong answer, -20 points", Toast.LENGTH_SHORT);
             toastSkip.show();
             if (score <= 0) { // reset score to 0 if value is negative
@@ -162,6 +167,19 @@ public class GameActivity extends AppCompatActivity {
         buttonRight.setText(gamePlay.answersList.get(2).toString());
 
 
+    }
+
+    /**
+     * Method assigns a MediaPlayer object to the class sound attribute and plays a sound if the class
+     * attribute soundIsOn is set to true.
+     * @param context takes the activity Context object for the MediaPlayer create() method
+     * @param soundID takes the resource int ID for the sound file from R.raw.soundfile
+     */
+    private void playSound(Context context, int soundID) {
+        if (soundIsOn) {
+            sound = MediaPlayer.create(context, soundID);
+            sound.start();
+        }
     }
 
     private void checkForSettingsIntent() {
