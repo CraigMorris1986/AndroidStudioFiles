@@ -3,11 +3,14 @@ package au.edu.jcu.cp3406.educationapp;
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +19,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.List;
 
 public class FinishGame extends AppCompatActivity {
     private SQLiteDatabase db;
@@ -67,6 +74,35 @@ public class FinishGame extends AppCompatActivity {
                 intent.putExtra("soundIsOn", soundIsOn);
                 startActivity(intent);
                 break;
+            case "tweet":
+                String textToSend = String.format("I just scored %s in the Education App", Integer.valueOf(score).toString());
+                Intent twitterIntent = new Intent(Intent.ACTION_SEND);
+                twitterIntent.putExtra(Intent.EXTRA_TEXT, textToSend);
+                twitterIntent.setType("text/plain");
+                PackageManager packManager = getPackageManager();
+                List<ResolveInfo> resolvedInfoList = packManager.queryIntentActivities(twitterIntent, PackageManager.MATCH_DEFAULT_ONLY);
+
+                boolean isResolved = false;
+                for (ResolveInfo resolveInfo : resolvedInfoList) {
+                    if (resolveInfo.activityInfo.packageName.startsWith("com.twitter.android")) {
+                        twitterIntent.setClassName(
+                                resolveInfo.activityInfo.packageName,
+                                resolveInfo.activityInfo.name);
+                        isResolved = true;
+                        break;
+                    }
+                }
+                if (isResolved) {
+                    startActivity(twitterIntent);
+                } else {
+                    Intent i = new Intent();
+                    i.putExtra(Intent.EXTRA_TEXT, textToSend);
+                    i.setAction(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse("https://twitter.com/intent/tweet?text=" + urlEncode(textToSend)));
+                    startActivity(i);
+                    Toast.makeText(this, "Twitter app isn't found", Toast.LENGTH_LONG).show();
+                }
+                break;
             case "save score":
                 EditText userInput = findViewById(R.id.editText);
                 userName = userInput.getText().toString().trim();
@@ -94,6 +130,16 @@ public class FinishGame extends AppCompatActivity {
             soundIsOn = true;
         }
     }
+
+    private String urlEncode(String textToEncode) {
+        try {
+            return URLEncoder.encode(textToEncode, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            Log.i("tag", "UTF-8 should always be supported", e);
+            return "";
+        }
+    }
+
     /**
      * Class onDestroy method to close the SQLite database when the Activity is finished.
      */

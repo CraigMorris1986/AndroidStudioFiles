@@ -22,6 +22,8 @@ public class GameActivity extends AppCompatActivity {
     private int runTimeInSeconds = 0;
     private boolean timerIsRunning = true;
     private boolean timerWasRunning = false;
+    private int gameQuestionAmount = 10;
+    TextView questionDisplay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,7 @@ public class GameActivity extends AppCompatActivity {
         }
         // set the initial question for the game
         generateGameInstance();
+        setQuestionDisplay();
         // background timer method to alter final scores
         runGameTimer();
     }
@@ -43,6 +46,7 @@ public class GameActivity extends AppCompatActivity {
     /**
      * Method to handle button navigation functionality in the apps GameActivity. Creates Toast messages
      * when navigation is used before the game ends.
+     *
      * @param view takes a view object as argument to assign clicked Button object ID
      */
     public void onClickGameActivityNav(View view) {
@@ -64,7 +68,7 @@ public class GameActivity extends AppCompatActivity {
                 generateGameInstance();
                 score -= score * difficulty;
                 if (score <= 0) {
-                    score =0;
+                    score = 0;
                 }
                 Toast toastSkip = Toast.makeText(this, "Question Skipped...", Toast.LENGTH_SHORT);
                 toastSkip.show();
@@ -77,6 +81,7 @@ public class GameActivity extends AppCompatActivity {
      * Checks if the user has clicked the correct answer and moves the game forward. If wrong answer
      * was clicked creates a Toast message and deducts the total score from the user for the game.
      * On game completion score is passed through an Intent object to FinishGame activity.
+     *
      * @param view takes a view object as argument to assign clicked Button object ID
      */
     public void onClickGameAnswer(View view) {
@@ -85,6 +90,11 @@ public class GameActivity extends AppCompatActivity {
         if (Integer.parseInt(clickedButton.getText().toString()) == correctAnswer) {
             generateGameInstance();
             score = score + 25 * difficulty;
+            setQuestionDisplay();
+            // if statement to stop the display from showing question amount greater than game length when game is complete
+            if (questionNumber > gameQuestionAmount) {
+                questionDisplay.setText("");
+            }
             //TODO: add sound for correct answer
         } else {
             // deduct score point for selecting wrong answer
@@ -92,23 +102,23 @@ public class GameActivity extends AppCompatActivity {
             //TODO: add sound for wrong answer
             Toast toastSkip = Toast.makeText(this, "Wrong answer, -20 points", Toast.LENGTH_SHORT);
             toastSkip.show();
-            if (score <=0) { // reset score to 0 if value is negative
+            if (score <= 0) { // reset score to 0 if value is negative
                 score = 0;
             }
         }
-            // check to finish the game event by calling another activity intent
-            if (questionNumber > 1) {
-                if (score - runTimeInSeconds < 0) {
-                    score = 0;
-                } else {
-                    score = score - runTimeInSeconds;
-                }
-                Intent intent = new Intent(this, FinishGame.class);
-                intent.putExtra("score", score);
-                intent.putExtra("difficulty", difficulty);
-                intent.putExtra("soundIsOn", soundIsOn);
-                startActivity(intent);
+        // check to finish the game event by calling another activity intent
+        if (questionNumber > gameQuestionAmount) {
+            if (score - runTimeInSeconds < 0) {
+                score = 0;
+            } else {
+                score = score - runTimeInSeconds;
             }
+            Intent intent = new Intent(this, FinishGame.class);
+            intent.putExtra("score", score);
+            intent.putExtra("difficulty", difficulty);
+            intent.putExtra("soundIsOn", soundIsOn);
+            startActivity(intent);
+        }
     }
 
     /**
@@ -184,6 +194,12 @@ public class GameActivity extends AppCompatActivity {
         });
     }
 
+    private void setQuestionDisplay() {
+        questionDisplay = findViewById(R.id.questionDisplay);
+        String displayString = String.format("Question number %s of %s", Integer.valueOf(questionNumber).toString(), Integer.valueOf(gameQuestionAmount).toString());
+        questionDisplay.setText(displayString);
+    }
+
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
@@ -191,6 +207,7 @@ public class GameActivity extends AppCompatActivity {
         savedInstanceState.putBoolean("isRunning", timerIsRunning);
         savedInstanceState.putBoolean("wasRunning", timerWasRunning);
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -205,6 +222,7 @@ public class GameActivity extends AppCompatActivity {
         timerWasRunning = timerIsRunning;
         timerIsRunning = false;
     }
+
     @Override
     protected void onRestart() {
         super.onRestart();

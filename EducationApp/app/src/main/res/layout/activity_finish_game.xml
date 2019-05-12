@@ -24,9 +24,12 @@
         android:layout_height="wrap_content"
         android:layout_weight="5"
         android:ems="10"
+        android:gravity="center"
         android:hint="@string/userEntryHintString"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        tools:targetApi="o" />
 
     <Button
         android:id="@+id/saveScoreButton"
@@ -35,6 +38,14 @@
         android:layout_weight="1"
         android:text="@string/saveScoreString"
         android:onClick="onClickFinishActivity"/>
+
+    <Button
+        android:id="@+id/tweetButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:onClick="onClickFinishActivity"
+        android:text="@string/tweetString" />
 
     <Button
         android:id="@+id/finishPlayAgainButton"

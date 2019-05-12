@@ -22,24 +22,23 @@ public class GamePlay {
      */
     GamePlay(int difficultyValue) {
         this.difficulty = difficultyValue;
-        int gameQuestionAmount = 10;
 
         switch (difficultyValue) {
             case 1:
                 //easy mode
-                setVariableNumbers(gameQuestionAmount);
+                setVariableNumbers(10);
                 generateCorrectAnswer();
                 getPossibleAnswers();
                 break;
             case 2:
                 //standard mode
-                setVariableNumbers(gameQuestionAmount * 2);
+                setVariableNumbers(20);
                 generateCorrectAnswer();
                 getPossibleAnswers();
                 break;
             case 3:
                 //hard mode
-                setVariableNumbers(gameQuestionAmount);
+                setVariableNumbers(10);
                 generateCorrectAnswer();
                 getPossibleAnswers();
                 break;
