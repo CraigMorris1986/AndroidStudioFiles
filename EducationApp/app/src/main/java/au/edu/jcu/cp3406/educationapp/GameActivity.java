@@ -26,7 +26,7 @@ public class GameActivity extends AppCompatActivity {
     private int runTimeInSeconds = 0;
     private boolean timerIsRunning = true;
     private boolean timerWasRunning = false;
-    private int gameQuestionAmount = 1;
+    private int gameQuestionAmount = 10;
     TextView questionDisplay;
     MediaPlayer sound;
     Context activityContext = this;
