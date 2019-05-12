@@ -26,7 +26,7 @@ public class GameActivity extends AppCompatActivity {
     private int runTimeInSeconds = 0;
     private boolean timerIsRunning = true;
     private boolean timerWasRunning = false;
-    private int gameQuestionAmount = 10;
+    private int gameQuestionAmount = 1;
     TextView questionDisplay;
     MediaPlayer sound;
     Context activityContext = this;
@@ -93,7 +93,7 @@ public class GameActivity extends AppCompatActivity {
      *
      * @param view takes a view object as argument to assign clicked Button object ID
      */
-    public void onClickGameAnswer(View view) throws InterruptedException {
+    public void onClickGameAnswer(View view) {
         int clickedAnswerButtonID = view.getId();
         Button clickedButton = findViewById(clickedAnswerButtonID);
         if (Integer.parseInt(clickedButton.getText().toString()) == correctAnswer) {
@@ -156,21 +156,27 @@ public class GameActivity extends AppCompatActivity {
 
     /**
      * Method sets the possible answers for a game instance from the array created by a GamePlay object
-     * to the activity game buttons for the user to choose from.
+     * to the activity game buttons for the user to choose from. Method also sets animation effect
+     * for the possible answers when text is set to the button object
      */
     @SuppressLint("SetTextI18n")
     private void setPossibleAnswers() {
         Collections.shuffle(gamePlay.answersList);
+        animate = AnimationUtils.loadAnimation(this, R.anim.bounce_long);
+        BouceInterpolatorHelper interpolator = new BouceInterpolatorHelper(0.35, 20);
+        animate.setInterpolator(interpolator);
 
         Button buttonLeft = findViewById(R.id.gameButton1);
         buttonLeft.setText(gamePlay.answersList.get(0).toString());
+        buttonLeft.startAnimation(animate);
 
         Button buttonMiddle = findViewById(R.id.gameButton2);
         buttonMiddle.setText(gamePlay.answersList.get(1).toString());
+        buttonMiddle.startAnimation(animate);
 
         Button buttonRight = findViewById(R.id.gameButton3);
         buttonRight.setText(gamePlay.answersList.get(2).toString());
-
+        buttonRight.startAnimation(animate);
 
     }
 

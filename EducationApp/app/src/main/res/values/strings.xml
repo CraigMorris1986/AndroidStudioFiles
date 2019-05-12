@@ -11,7 +11,7 @@
     <string name="skipString">skip</string>
     <string name="playAgainString">play again</string>
     <string name="saveScoreString">save score</string>
-    <string name="userEntryHintString">Enter you name...</string>
+    <string name="userEntryHintString">Enter your name…</string>
     <string name="noScoreString">no score set</string>
     <string name="soundSettingString">Sound Settings</string>
     <string name="gameDifficultyString">Game Difficulty</string>

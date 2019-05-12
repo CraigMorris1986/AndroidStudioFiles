@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class ScoresActivity extends AppCompatActivity {
-    private SQLiteDatabase db;
     private Cursor cursor;
     TextView[] viewArray = new TextView[5];
 
@@ -28,16 +27,20 @@ public class ScoresActivity extends AppCompatActivity {
 
         SQLiteOpenHelper databaseHelper = new DatabaseHelper(this);
         try {
-            db = databaseHelper.getReadableDatabase();
+            SQLiteDatabase db = databaseHelper.getReadableDatabase();
             Log.i("tag", db.toString());
             cursor = db.query("SCORES", new String[]{"NAME", "SCORE"}, null,
                     null, null, null, "SCORE DESC");
+            Animation animate = AnimationUtils.loadAnimation(this, R.anim.bounce_long);
+            BouceInterpolatorHelper interpolator = new BouceInterpolatorHelper(0.35, 20);
+            animate.setInterpolator(interpolator);
             if (cursor != null) {
                 cursor.moveToFirst();
-                for (int i = 0; i < viewArray.length; i++) {
-                    setScoreText(viewArray[i]);
+                for (TextView textView : viewArray) {
+                    setScoreText(textView);
                     if (cursor.moveToNext()) {
-                        setScoreText(viewArray[i]);
+                        setScoreText(textView);
+                        textView.startAnimation(animate);
                     } else {
                         break;
                     }
@@ -48,6 +51,7 @@ public class ScoresActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(this, "Database unavailable", Toast.LENGTH_SHORT);
             toast.show();
         }
+
 
     }
 

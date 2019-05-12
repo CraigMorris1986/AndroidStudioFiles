@@ -48,6 +48,11 @@ public class FinishGame extends AppCompatActivity {
 
         TextView scoreDisplay = findViewById(R.id.finishText);
         scoreDisplay.setText(String.format("Good work!\nYour score is %d", score));
+
+        Animation animate = AnimationUtils.loadAnimation(this, R.anim.bounce_long);
+        BouceInterpolatorHelper interpolator = new BouceInterpolatorHelper(0.35, 20);
+        animate.setInterpolator(interpolator);
+        scoreDisplay.startAnimation(animate);
     }
 
     /**

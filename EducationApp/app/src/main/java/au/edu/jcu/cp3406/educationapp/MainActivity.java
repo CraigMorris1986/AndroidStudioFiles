@@ -12,7 +12,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
     private int difficulty;
     private boolean soundIsOn;
-    private Animation animate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         int clickedButtonID = view.getId();
         Button clickedButton = findViewById(clickedButtonID);
         String buttonText = clickedButton.getText().toString().toLowerCase();
-        animate =  AnimationUtils.loadAnimation(this, R.anim.bounce);
+        Animation animate = AnimationUtils.loadAnimation(this, R.anim.bounce);
         clickedButton.startAnimation(animate);
         switch (buttonText) {
             case "play":

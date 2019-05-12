@@ -1,6 +1,5 @@
 package au.edu.jcu.cp3406.educationapp;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -11,7 +10,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     /**
      * Constructor method for SQLiteOpenHelper
-     * @param context
+     * @param context takes the activity context object as a parameter
      */
     DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

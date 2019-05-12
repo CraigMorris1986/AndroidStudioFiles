@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GameActivity"
+    android:background="#3BFFEB3B"
     android:orientation="vertical"
-    >
+    tools:context=".GameActivity">
 
     <TextView
         android:id="@+id/questionDisplay"
@@ -25,11 +25,11 @@
         android:textSize="36sp" />
 
     <LinearLayout
+        style="?android:attr/buttonBarStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="3"
-        android:orientation="horizontal"
-        style="?android:attr/buttonBarStyle">
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/gameButton1"
@@ -95,8 +95,8 @@
             android:layout_margin="10sp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/leaveGameString"
             android:onClick="onClickGameActivityNav"
+            android:text="@string/leaveGameString"
             tools:ignore="ButtonStyle,NestedWeights" />
 
         <Button
@@ -107,8 +107,8 @@
             android:layout_margin="10sp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/skipString"
             android:onClick="onClickGameActivityNav"
+            android:text="@string/skipString"
             tools:ignore="ButtonStyle" />
     </LinearLayout>
 </LinearLayout>
