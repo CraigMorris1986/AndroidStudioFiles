@@ -3,13 +3,85 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SettingsActivity"
-    android:orientation="vertical">
+    android:layout_margin="10sp"
+    android:orientation="vertical"
+    tools:context=".SettingsActivity">
+
+    <TextView
+        android:id="@+id/difficultyDisplay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:text="@string/gameDifficultyString"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="2"
+        android:gravity="center">
+
+        <RadioButton
+            android:id="@+id/easySettingButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/easyString"
+            android:textSize="24sp" />
+
+        <RadioButton
+            android:id="@+id/standarSettingButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/standardString"
+            android:textSize="24sp"
+            android:checked="true"/>
+
+        <RadioButton
+            android:id="@+id/hardSettingButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/hardString"
+            android:textSize="24sp" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/soundSettingDisplay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/soundSettingString"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <Switch
+        android:id="@+id/soundSwitch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30sp"
+        android:layout_marginRight="30sp"
+        android:layout_weight="2"
+        android:paddingEnd="50sp"
+        android:text="@string/playSoundsString"
+        android:textOff="@string/soundOffString"
+        android:textOn="@string/soundOnString"
+        android:textSize="24sp"
+        tools:ignore="RtlSymmetry"
+        android:checked="true"/>
 
     <Button
         android:id="@+id/settingsBackButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:onClick="onClickSettingsActivity"
         android:text="@string/mainMenuString"
-        android:onClick="onClickSettingsActivity"/>
+        android:textSize="24sp" />
 </LinearLayout>

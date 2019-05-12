@@ -21,12 +21,15 @@ public class FinishGame extends AppCompatActivity {
     private SQLiteDatabase db;
     int score;
     String userName;
+    int difficulty;
+    private boolean soundIsOn;
 
     @SuppressLint("DefaultLocale")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finish_game);
+        checkForSettingsIntent();
         Intent intent = getIntent();
         score = intent.getIntExtra("score", 0);
 
@@ -54,10 +57,14 @@ public class FinishGame extends AppCompatActivity {
         switch (buttonText) {
             case "play again":
                 intent = new Intent(this, GameActivity.class);
+                intent.putExtra("difficulty", difficulty);
+                intent.putExtra("soundIsOn", soundIsOn);
                 startActivity(intent);
                 break;
             case "main menu":
                 intent = new Intent(this, MainActivity.class);
+                intent.putExtra("difficulty", difficulty);
+                intent.putExtra("soundIsOn", soundIsOn);
                 startActivity(intent);
                 break;
             case "save score":
@@ -74,8 +81,19 @@ public class FinishGame extends AppCompatActivity {
                 Toast toast = Toast.makeText(this, "Score save successful!", Toast.LENGTH_SHORT);
                 toast.show();
         }
+
     }
 
+    private void checkForSettingsIntent() {
+        if (getIntent() != null && getIntent().getExtras() != null) {
+            Intent settingsIntent = getIntent();
+            difficulty = settingsIntent.getIntExtra("difficulty", 2);
+            soundIsOn = settingsIntent.getBooleanExtra("soundIsOn", true);
+        } else {
+            difficulty = 2;
+            soundIsOn = true;
+        }
+    }
     /**
      * Class onDestroy method to close the SQLite database when the Activity is finished.
      */

@@ -3,15 +3,30 @@ package au.edu.jcu.cp3406.educationapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
+    private int difficulty;
+    private boolean soundIsOn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        checkForSettingsIntent();
+    }
+
+    private void checkForSettingsIntent() {
+        if (getIntent() != null && getIntent().getExtras() != null) {
+            Intent settingsIntent = getIntent();
+            difficulty = settingsIntent.getIntExtra("difficulty", 2);
+            soundIsOn = settingsIntent.getBooleanExtra("soundIsOn", true);
+        } else {
+            difficulty = 2;
+            soundIsOn = true;
+        }
     }
 
     /**
@@ -27,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         switch (buttonText) {
             case "play":
                 intent = new Intent(MainActivity.this, GameActivity.class);
+                intent.putExtra("difficulty", difficulty);
+                intent.putExtra("soundIsOn", soundIsOn);
                 startActivity(intent);
                 break;
             case "scores":

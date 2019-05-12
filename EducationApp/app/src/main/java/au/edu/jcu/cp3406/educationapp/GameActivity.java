@@ -5,20 +5,16 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
-import java.util.Locale;
 
 public class GameActivity extends AppCompatActivity {
-    int difficultyValue;
+    int difficulty;
+    private boolean soundIsOn;
     GamePlay gamePlay;
     int questionNumber = 0;
     int correctAnswer;
@@ -31,8 +27,7 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-
-        difficultyValue = 1; //TODO: REMOVE THIS -> hardcoded for testing
+        checkForSettingsIntent();
 
         if (savedInstanceState != null) {
             savedInstanceState.putInt("seconds", runTimeInSeconds);
@@ -41,8 +36,8 @@ public class GameActivity extends AppCompatActivity {
         }
         // set the initial question for the game
         generateGameInstance();
+        // background timer method to alter final scores
         runGameTimer();
-
     }
 
     /**
@@ -60,12 +55,14 @@ public class GameActivity extends AppCompatActivity {
                 intent = new Intent(this, MainActivity.class);
                 Toast toast = Toast.makeText(this, "You have left the game", Toast.LENGTH_SHORT);
                 toast.show();
+                intent.putExtra("difficulty", difficulty);
+                intent.putExtra("soundIsOn", soundIsOn);
                 startActivity(intent);
                 break;
             case "skip":
                 //TODO: add sound for skip
                 generateGameInstance();
-                score -= score * difficultyValue;
+                score -= score * difficulty;
                 if (score <= 0) {
                     score =0;
                 }
@@ -87,7 +84,7 @@ public class GameActivity extends AppCompatActivity {
         Button clickedButton = findViewById(clickedAnswerButtonID);
         if (Integer.parseInt(clickedButton.getText().toString()) == correctAnswer) {
             generateGameInstance();
-            score = score + 25 * difficultyValue;
+            score = score + 25 * difficulty;
             //TODO: add sound for correct answer
         } else {
             // deduct score point for selecting wrong answer
@@ -108,6 +105,8 @@ public class GameActivity extends AppCompatActivity {
                 }
                 Intent intent = new Intent(this, FinishGame.class);
                 intent.putExtra("score", score);
+                intent.putExtra("difficulty", difficulty);
+                intent.putExtra("soundIsOn", soundIsOn);
                 startActivity(intent);
             }
     }
@@ -118,7 +117,7 @@ public class GameActivity extends AppCompatActivity {
      * by 1.
      */
     private void generateGameInstance() {
-        gamePlay = new GamePlay(difficultyValue);
+        gamePlay = new GamePlay(difficulty);
         setQuestion();
         setPossibleAnswers();
         this.correctAnswer = gamePlay.getCorrectAnswer();
@@ -153,6 +152,17 @@ public class GameActivity extends AppCompatActivity {
         buttonRight.setText(gamePlay.answersList.get(2).toString());
 
 
+    }
+
+    private void checkForSettingsIntent() {
+        if (getIntent() != null && getIntent().getExtras() != null) {
+            Intent settingsIntent = getIntent();
+            difficulty = settingsIntent.getIntExtra("difficulty", 2);
+            soundIsOn = settingsIntent.getBooleanExtra("soundIsOn", true);
+        } else {
+            difficulty = 2;
+            soundIsOn = true;
+        }
     }
 
     /**

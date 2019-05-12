@@ -13,4 +13,12 @@
     <string name="saveScoreString">save score</string>
     <string name="userEntryHintString">Enter you name...</string>
     <string name="noScoreString">no score set</string>
+    <string name="soundSettingString">Sound Settings</string>
+    <string name="gameDifficultyString">Game Difficulty</string>
+    <string name="easyString">Easy</string>
+    <string name="standardString">Standard</string>
+    <string name="hardString">Hard</string>
+    <string name="soundOffString">Sound Off</string>
+    <string name="soundOnString">Sound On</string>
+    <string name="playSoundsString">Play Sounds</string>
 </resources>
