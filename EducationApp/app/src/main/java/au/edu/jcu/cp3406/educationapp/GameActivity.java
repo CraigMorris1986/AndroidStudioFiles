@@ -3,6 +3,7 @@ package au.edu.jcu.cp3406.educationapp;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -33,7 +34,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
     private int runTimeInSeconds = 0;
     private boolean timerIsRunning = true;
     private boolean timerWasRunning = false;
-    private int gameQuestionAmount = 10;
+    private int gameQuestionAmount = 2;
     private long lastTimeShook = 0;
     private Animation animate;
     private SensorManager sensorManager;
@@ -53,8 +54,10 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         checkForSettingsIntent();
+
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         sensorAccelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+
         interpolator = new BouceInterpolatorHelper(0.35, 20);
         animate =  AnimationUtils.loadAnimation(this, R.anim.bounce);
 
@@ -118,6 +121,8 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         if (Integer.parseInt(clickedButton.getText().toString()) == correctAnswer) {
             clickedButton.startAnimation(animate);
             generateGameInstance();
+            // resets the buttons clickable attribute to true and colour back to blue
+            makeAnswersButtonsClickable();
             score = score + 25 * difficulty;
             setQuestionDisplay();
             // if statement to stop the display from showing question amount greater than game length when game is complete
@@ -126,7 +131,9 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
             }
             playSound(activityContext, R.raw.success);
         } else {
-            // deduct score point for selecting wrong answer
+            // deduct score point for selecting wrong answer and make the button un-clickable
+            clickedButton.setClickable(false);
+            clickedButton.setTextColor(Color.parseColor("red"));
             score -= 20;
             playSound(activityContext, R.raw.wrong);
             Toast toastSkip = Toast.makeText(this, "Wrong answer, -20 points", Toast.LENGTH_SHORT);
@@ -199,6 +206,23 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
     }
 
     /**
+     * Method creates a array of Button objects and stores the possible answers button objects
+     * within it. Method then iterates through the array and sets all buttons clickable attribute to true.
+     * Method also resets colour value of the buttons text to #3F51B5 (blue).
+     */
+    private void makeAnswersButtonsClickable() {
+        Button[] buttonArray = new Button[3];
+        buttonArray[0] = findViewById(R.id.gameButton1);
+        buttonArray[1] = findViewById(R.id.gameButton2);
+        buttonArray[2] = findViewById(R.id.gameButton3);
+        for (Button button :
+                buttonArray) {
+            button.setClickable(true);
+            button.setTextColor(Color.parseColor("#3F51B5"));
+        }
+    }
+
+    /**
      * Method assigns a MediaPlayer object to the class sound attribute and plays a sound if the class
      * attribute soundIsOn is set to true.
      * @param context takes the activity Context object for the MediaPlayer create() method
@@ -211,6 +235,10 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         }
     }
 
+    /**
+     * Method that checks if an Intent object was send from another activity within the app. If not
+     * it sets the difficulty level to an int of 2 and the soundIsOn boolean to true.
+     */
     private void checkForSettingsIntent() {
         if (getIntent() != null && getIntent().getExtras() != null) {
             Intent settingsIntent = getIntent();

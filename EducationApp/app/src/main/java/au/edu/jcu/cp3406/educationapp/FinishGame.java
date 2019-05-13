@@ -20,7 +20,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.List;
@@ -105,11 +104,11 @@ public class FinishGame extends AppCompatActivity {
                 if (isResolved) {
                     startActivity(twitterIntent);
                 } else {
-                    Intent i = new Intent();
-                    i.putExtra(Intent.EXTRA_TEXT, textToSend);
-                    i.setAction(Intent.ACTION_VIEW);
-                    i.setData(Uri.parse("https://twitter.com/intent/tweet?text=" + urlEncode(textToSend)));
-                    startActivity(i);
+                    Intent otherIntent = new Intent();
+                    otherIntent.putExtra(Intent.EXTRA_TEXT, textToSend);
+                    otherIntent.setAction(Intent.ACTION_VIEW);
+                    otherIntent.setData(Uri.parse("https://twitter.com/intent/tweet?text=" + urlEncode(textToSend)));
+                    startActivity(otherIntent);
                     Toast.makeText(this, "Twitter app isn't found", Toast.LENGTH_LONG).show();
                 }
                 playSound(this, R.raw.tweet);

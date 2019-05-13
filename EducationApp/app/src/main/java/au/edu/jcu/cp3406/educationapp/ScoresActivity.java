@@ -38,9 +38,9 @@ public class ScoresActivity extends AppCompatActivity {
                 cursor.moveToFirst();
                 for (TextView textView : viewArray) {
                     setScoreText(textView);
+                    textView.startAnimation(animate);
                     if (cursor.moveToNext()) {
                         setScoreText(textView);
-                        textView.startAnimation(animate);
                     } else {
                         break;
                     }
