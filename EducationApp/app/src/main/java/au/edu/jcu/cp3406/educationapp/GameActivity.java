@@ -3,6 +3,10 @@ package au.edu.jcu.cp3406.educationapp;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.media.MediaPlayer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -16,10 +20,13 @@ import android.widget.Toast;
 
 import java.util.Collections;
 
-public class GameActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity implements SensorEventListener {
     int difficulty;
     private boolean soundIsOn;
     GamePlay gamePlay;
+    TextView questionDisplay;
+    MediaPlayer sound;
+    Context activityContext = this;
     int questionNumber = 0;
     int correctAnswer;
     int score = 0;
@@ -27,16 +34,28 @@ public class GameActivity extends AppCompatActivity {
     private boolean timerIsRunning = true;
     private boolean timerWasRunning = false;
     private int gameQuestionAmount = 10;
-    TextView questionDisplay;
-    MediaPlayer sound;
-    Context activityContext = this;
+    private long lastTimeShook = 0;
     private Animation animate;
+    private SensorManager sensorManager;
+    private Sensor sensorAccelerometer;
+    private BouceInterpolatorHelper interpolator;
 
+    /**
+     * Class onCreate method that is automatically called when the activity starts. Method checks
+     * for Intent objects from other activities for the apps difficulty and sound setting value.
+     * Method then sets the accelerometer for use within the class as a class attribute and does the same with the
+     * animation for buttons. Method then calls generateGameInstance() and setQuestionDisplay() to set the game instance
+     * and then begins the background timer for scoring.
+     * @param savedInstanceState takes a Bundle object as a parameter as the saved instance state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         checkForSettingsIntent();
+        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        sensorAccelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        interpolator = new BouceInterpolatorHelper(0.35, 20);
         animate =  AnimationUtils.loadAnimation(this, R.anim.bounce);
 
         if (savedInstanceState != null) {
@@ -163,7 +182,6 @@ public class GameActivity extends AppCompatActivity {
     private void setPossibleAnswers() {
         Collections.shuffle(gamePlay.answersList);
         animate = AnimationUtils.loadAnimation(this, R.anim.bounce_long);
-        BouceInterpolatorHelper interpolator = new BouceInterpolatorHelper(0.35, 20);
         animate.setInterpolator(interpolator);
 
         Button buttonLeft = findViewById(R.id.gameButton1);
@@ -229,6 +247,10 @@ public class GameActivity extends AppCompatActivity {
         questionDisplay.setText(displayString);
     }
 
+    /**
+     * A method to hold the class values needed for the background timer into a saved instance state.
+     * @param savedInstanceState takes a Bundle object as a parameter
+     */
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
@@ -240,6 +262,7 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        sensorManager.registerListener(this, sensorAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
         if (timerWasRunning) {
             timerIsRunning = true;
         }
@@ -260,5 +283,46 @@ public class GameActivity extends AppCompatActivity {
         questionNumber = 0;
         runTimeInSeconds = 0;
         timerIsRunning = true;
+    }
+
+    /**
+     * Method to handle the event changes for Sensor objects as an event listener. Method checks if the
+     * device accelerometer is available and if so gets the current system time and checks if the
+     * device registered a shake event in the last two seconds. If the device hasn't registered a shake event in the last two seconds
+     * and the accelerometers acceleration value is greater than 800 it animates the possible answers
+     * in the game instance using the bounce_long animation.
+     * @param event takes a SensorEvent object as a parameter
+     */
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+            long curTime = System.currentTimeMillis();
+            if ((curTime - lastTimeShook) > 2000) {
+
+                float xValue = event.values[0];
+                float yValue = event.values[1];
+                float zValue = event.values[2];
+
+                double acceleration = Math.sqrt(Math.pow(xValue, 2) + Math.pow(yValue, 2) + Math.pow(zValue, 2)) - SensorManager.GRAVITY_EARTH;
+                if (acceleration > 800) {
+                    lastTimeShook = curTime;
+                    // sets animation values
+                    animate = AnimationUtils.loadAnimation(this, R.anim.bounce_long);
+                    animate.setInterpolator(interpolator);
+                    // perform animation same as the setPossibleAnswers() class method.
+                    Button buttonLeft = findViewById(R.id.gameButton1);
+                    buttonLeft.startAnimation(animate);
+                    Button buttonMiddle = findViewById(R.id.gameButton2);
+                    buttonMiddle.startAnimation(animate);
+                    Button buttonRight = findViewById(R.id.gameButton3);
+                    buttonRight.startAnimation(animate);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+        // Method must be implemented by the SensorEventListener interface but doesn't need to do anything.
     }
 }
