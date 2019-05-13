@@ -47,30 +47,35 @@ public class GamePlay {
 
     /**
      * Method to generate two random integer values off the correct answer value for this class instance.
-     * The first random incorrect answer is generated to be larger than the correct answer by a min value
-     * of 1 up to 20% of the correct answer.
-     * The second value is the same as the first except to be a lower value than the correct answer.
+     * The two random integers are chosen randomly to either be larger or smaller than the correct answer.
+     * This is done to ensure that the correct answer is not always the median value.
      * Method appends the correct answer integer and the two other random integers to a List<Integer> array.
      * Method checks if the current integer is already in the list and appends the value slightly up or down
      * to avoid duplicate array values.
      */
     private void getPossibleAnswers() {
+        Random randomSelector = new Random();
         for (int i = 0; i < 3; i++) {
+            int randomChoice = randomSelector.nextInt(2);
             if (i == 0) {
                 answersList.add(correctAnswer);
-            } else if (i == 1) {
-                int randomNumber = random.nextInt((int) (correctAnswer + correctAnswer * 0.2)) + correctAnswer + 1;
-                if (answersList.contains(randomNumber)) {
-                    randomNumber += random.nextInt(2) + 1;
-                }
-                answersList.add(randomNumber);
-
             } else {
-                int randomNumber = correctAnswer - random.nextInt((int) (correctAnswer - correctAnswer * 0.2)) + 1;
-                if (answersList.contains(randomNumber)) {
-                    randomNumber -= random.nextInt(1) + 1;
+                if (randomChoice == 0) {
+                    // makes the random number larger than the correct answer
+                    int randomNumber = random.nextInt((int) (correctAnswer + correctAnswer * 0.2)) + correctAnswer + 1;
+                    if (answersList.contains(randomNumber)) {
+                        randomNumber += random.nextInt(2) + 1;
+                    }
+                    answersList.add(randomNumber);
+                } else {
+                    // makes the random number smaller than the correct answer
+                    int randomNumber = correctAnswer - random.nextInt((int) (correctAnswer - correctAnswer * 0.2)) + 1;
+                    if (answersList.contains(randomNumber)) {
+                        randomNumber -= random.nextInt(1) + 1;
+                    }
+                    answersList.add(randomNumber);
                 }
-                answersList.add(randomNumber);
+
             }
         }
     }

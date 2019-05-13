@@ -34,7 +34,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
     private int runTimeInSeconds = 0;
     private boolean timerIsRunning = true;
     private boolean timerWasRunning = false;
-    private int gameQuestionAmount = 2;
+    private int gameQuestionAmount = 10;
     private long lastTimeShook = 0;
     private Animation animate;
     private SensorManager sensorManager;
