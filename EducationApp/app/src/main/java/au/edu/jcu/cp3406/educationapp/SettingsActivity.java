@@ -23,6 +23,13 @@ public class SettingsActivity extends AppCompatActivity implements CompoundButto
         soundSwitch.setOnCheckedChangeListener(this);
     }
 
+    /**
+     * Method is a Button object event handler for the settings screen. Passes the values for the
+     * applications soundIsOn boolean value and difficulty int value for the application to function
+     * to the users specifications. Default setting are applied to the activity in the activity_setting.xml
+     * file to pre select values.
+     * @param view takes a View object from the Activity.
+     */
     public void onClickSettingsActivity(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         Button clickedButton = findViewById(R.id.settingsBackButton);
@@ -34,6 +41,11 @@ public class SettingsActivity extends AppCompatActivity implements CompoundButto
         startActivity(intent);
     }
 
+    /**
+     * Method to get the ID of the selected RadioButton object in the activity and set a difficulty
+     * setting for game play from this.
+     * @return an int value of 1, 2, or 3 for game difficulty where 3 is the hardest
+     */
     private int getDifficulty() {
         int chosenDifficulty = 1;
         RadioGroup difficultyRadioGroup = findViewById(R.id.radioGroup);
@@ -52,7 +64,13 @@ public class SettingsActivity extends AppCompatActivity implements CompoundButto
         return chosenDifficulty;
     }
 
-
+    /**
+     * Event listener method for the Switch objects current state. Method is used to play a sound
+     * if the user turns the sound on from an off state.
+     * @param buttonView takes a CompoundButton object for use by the event listener
+     * @param isChecked takes a boolean value to determine the state of the soundIsOn value for the
+     *                  application.
+     */
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         soundIsOn = isChecked;

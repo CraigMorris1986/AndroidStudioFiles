@@ -25,15 +25,16 @@ public class ScoresActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scores);
         makeTextViewArray();
 
+        Animation animate = AnimationUtils.loadAnimation(this, R.anim.bounce_long);
+        BouceInterpolatorHelper interpolator = new BouceInterpolatorHelper(0.35, 20);
+        animate.setInterpolator(interpolator);
+
         SQLiteOpenHelper databaseHelper = new DatabaseHelper(this);
         try {
             SQLiteDatabase db = databaseHelper.getReadableDatabase();
             Log.i("tag", db.toString());
             cursor = db.query("SCORES", new String[]{"NAME", "SCORE"}, null,
                     null, null, null, "SCORE DESC");
-            Animation animate = AnimationUtils.loadAnimation(this, R.anim.bounce_long);
-            BouceInterpolatorHelper interpolator = new BouceInterpolatorHelper(0.35, 20);
-            animate.setInterpolator(interpolator);
             if (cursor != null) {
                 cursor.moveToFirst();
                 for (TextView textView : viewArray) {
@@ -51,8 +52,6 @@ public class ScoresActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(this, "Database unavailable", Toast.LENGTH_SHORT);
             toast.show();
         }
-
-
     }
 
     /**

@@ -130,6 +130,10 @@ public class FinishGame extends AppCompatActivity {
 
     }
 
+    /**
+     * Method that checks if an Intent object was send from another activity within the app. If not
+     * it sets the difficulty level to an int of 2 and the soundIsOn boolean to true.
+     */
     private void checkForSettingsIntent() {
         if (getIntent() != null && getIntent().getExtras() != null) {
             Intent settingsIntent = getIntent();
@@ -141,6 +145,11 @@ public class FinishGame extends AppCompatActivity {
         }
     }
 
+    /**
+     * Method to encode a String for use with UTF-8 URL encoding.
+     * @param textToEncode takes a String object to url encode.
+     * @return returns a UTF-8 URl encoded URLEncode object, if UTF-8 is not supported returns "".
+     */
     private String urlEncode(String textToEncode) {
         try {
             return URLEncoder.encode(textToEncode, "UTF-8");

@@ -16,8 +16,7 @@ public class GamePlay {
     List<Integer> answersList = new ArrayList<>();
 
     /**
-     * Constructor method for the GamePlay class.
-     *
+     * Constructor method for the GamePlay class. Sets the game up through a switch statement based on difficulty setting.
      * @param difficultyValue takes an integer value from 1 to 3 for the difficulty setting for the game.
      */
     GamePlay(int difficultyValue) {
