@@ -26,6 +26,16 @@
         android:textSize="36sp"
         android:textStyle="bold" />
 
+    <TextView
+        android:id="@+id/gameHintDisplay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight=".5"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:text="@string/xEqualsString"
+        android:textSize="24sp" />
+
     <LinearLayout
         style="?android:attr/buttonBarStyle"
         android:layout_width="match_parent"

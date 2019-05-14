@@ -71,7 +71,7 @@ public class GamePlay {
                     // makes the random number smaller than the correct answer
                     int randomNumber = correctAnswer - random.nextInt((int) (correctAnswer - correctAnswer * 0.2)) + 1;
                     if (answersList.contains(randomNumber)) {
-                        randomNumber -= random.nextInt(1) + 1;
+                        randomNumber -= random.nextInt(2) + 1;
                     }
                     answersList.add(randomNumber);
                 }

@@ -23,4 +23,5 @@
     <string name="playSoundsString">Play Sounds</string>
     <string name="tweetString">tweet</string>
     <string name="topScoresString">Top 5 Scores</string>
+    <string name="xEqualsString">X = ?</string>
 </resources>
